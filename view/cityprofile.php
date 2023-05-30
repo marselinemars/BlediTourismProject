@@ -1,6 +1,4 @@
-<?php
-$city = urldecode($_GET['city']);
-?>
+
 
 
 <!DOCTYPE html>
@@ -58,29 +56,32 @@ $city = urldecode($_GET['city']);
           </svg>
           <div class="cityprofile-nav">
             <nav class="cityprofile-mynav">
-              <a href="linkagepage.html" class="cityprofile-navlink">home</a>
-              <a href="linkagepage.html" class="cityprofile-navlink01">
+              <a href="index.php?action=home" class="cityprofile-navlink">home</a>
+              <a href="index.php?action=all-tourism" class="cityprofile-navlink01">
                 tourism
               </a>
-              <a href="linkagepage.html" class="cityprofile-navlink02">
+              <a href="index.php?action=all-hotels" class="cityprofile-navlink02">
                 hotels
               </a>
-              <a href="linkagepage.html" class="cityprofile-navlink03">
+              <a href="index.php?action=all-restaurants" class="cityprofile-navlink03">
                 restaurants
               </a>
-              <a href="linkagepage.html" class="cityprofile-navlink04">
+              <a href="index.php?action=all-agencies" class="cityprofile-navlink04">
                 agencies
               </a>
-              <a href="linkagepage.html" class="cityprofile-navlink05">
+              <a href="index.php?action=all-guides" class="cityprofile-navlink05">
                 guides
               </a>
             </nav>
           </div>
           <div class="cityprofile-btn-group">
-           
-            <a href="signup.html" class="cityprofile-register button">
-              My profile
-            </a>
+                 
+        <?php if ($role!="visitor"){
+          
+          echo '<a href="index.php?action=my_profile&role='.$role.'" class="guideprofie-register button">
+          My profile
+        </a>' ; 
+      } ?>
           </div>
           <div data-role="BurgerMenu" class="cityprofile-burger-menu">
             <svg viewBox="0 0 1024 1024" class="cityprofile-icon02">
@@ -153,7 +154,7 @@ $city = urldecode($_GET['city']);
                 <span class="cityprofile-text04">
                   monuments and places to visit
                 </span>
-                <h1 class="cityprofile-text05">16</h1>
+                <h1 class="cityprofile-text05"><?php echo $tourism_count ; ?> </h1>
               </div>
               <div class="cityprofile-stat1">
                 <svg viewBox="0 0 1024 1024" class="cityprofile-icon14">
@@ -163,7 +164,7 @@ $city = urldecode($_GET['city']);
                 </svg>
                 <span class="cityprofile-text06">hotels</span>
                 <span class="cityprofile-text07">available hotels&nbsp;</span>
-                <h1 class="cityprofile-text08">19</h1>
+                <h1 class="cityprofile-text08"><?php echo $hotel_count ; ?></h1>
               </div>
               <div class="cityprofile-stat2">
                 <svg viewBox="0 0 1024 1024" class="cityprofile-icon16">
@@ -173,7 +174,7 @@ $city = urldecode($_GET['city']);
                 </svg>
                 <span class="cityprofile-text09">restaurants</span>
                 <span class="cityprofile-text10">available restaurants</span>
-                <h1 class="cityprofile-text11">29</h1>
+                <h1 class="cityprofile-text11"><?php echo $resto_count ; ?></h1>
               </div>
               <div class="cityprofile-stat3">
                 <svg viewBox="0 0 1024 1024" class="cityprofile-icon18">
@@ -185,7 +186,7 @@ $city = urldecode($_GET['city']);
                 <span class="cityprofile-text13">
                   agencies to book circuits
                 </span>
-                <h1 class="cityprofile-text14">35</h1>
+                <h1 class="cityprofile-text14"><?php echo $agency_count ; ?></h1>
               </div>
               <div class="cityprofile-stat4">
                 <svg viewBox="0 0 1024 1024" class="cityprofile-icon20">
@@ -197,7 +198,7 @@ $city = urldecode($_GET['city']);
                 <span class="cityprofile-text16">
                   available touristic guides&nbsp;
                 </span>
-                <h1 class="cityprofile-text17">10</h1>
+                <h1 class="cityprofile-text17"><?php echo $guide_count ; ?></h1>
               </div>
             </div>
           </div>

@@ -71,19 +71,19 @@
             </svg>
             <div class="signup-nav">
               <nav class="signup-mynav">
-                <a href="index.html" class="signup-navlink">home</a>
-                <a href="linkagepage.html" class="signup-navlink1">tourism</a>
-                <a href="linkagepage.html" class="signup-navlink2">hotels</a>
-                <a href="linkagepage.html" class="signup-navlink3">
+                <a href="index.php?action=home" class="signup-navlink">home</a>
+                <a href="index.php?action=all-agencies" class="signup-navlink1">tourism</a>
+                <a href="index.php?action=all-hotels" class="signup-navlink2">hotels</a>
+                <a href="index.php?action=all-restaurants" class="signup-navlink3">
                   restaurants
                 </a>
-                <a href="linkagepage.html" class="signup-navlink4">agencies</a>
-                <a href="linkagepage.html" class="signup-navlink5">guides</a>
+                <a href="index.php?action=all-agencies" class="signup-navlink4">agencies</a>
+                <a href="index.php?action=all-guides" class="signup-navlink5">guides</a>
               </nav>
             </div>
             <div class="signup-btn-group">
-              <a href="login.html" class="signup-login button">Login</a>
-              <a href="signup.html" class="signup-register button">sign up</a>
+              <a href="index.php?action=login" class="signup-login button">Login</a>
+              <a href="index.php?action=sign_up" class="signup-register button">sign up</a>
             </div>
             <div data-role="BurgerMenu" class="signup-burger-menu">
               <svg viewBox="0 0 1024 1024" class="signup-icon02">
@@ -149,7 +149,7 @@
                     <option value=""><button>Select an option</button></option>
                     <option value="1">visitor</option>
                     <option value="2" >hotel</option>
-                    <option value="3" >restaurent</option>
+                    <option value="3" >restaurant</option>
                     <option  value="4">agency</option>
                     <option value="5" >guide</option>
                   </select>
@@ -619,23 +619,9 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-              <a href="linkagepage.html" class="signup-navlink6 button">
-                sign up
-              </a>
               <div class="signup-container12">
                 <span class="signup-text4">already have an account ?</span>
-                <a href="login.html" class="signup-navlink7 button">log in</a>
+                <a href="index.php?action=login" class="signup-navlink7 button">log in</a>
               </div>
             </div>
           </div>
@@ -696,6 +682,7 @@
           }
         }
       });
+
     </script>
     
   </body>

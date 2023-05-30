@@ -54,22 +54,30 @@
           </svg>
           <div class="cityguides-nav">
             <nav class="cityguides-mynav">
-              <a href="linkagepage.html" class="cityguides-navlink">home</a>
-              <a href="linkagepage.html" class="cityguides-navlink01">
+              <a href="index.php?action=home" class="cityguides-navlink">home</a>
+              <a href="index.php?action=all-tourism" class="cityguides-navlink01">
                 tourism
               </a>
-              <a href="linkagepage.html" class="cityguides-navlink02">hotels</a>
-              <a href="linkagepage.html" class="cityguides-navlink03">
+              <a href="index.php?action=all-hotels" class="cityguides-navlink02">hotels</a>
+              <a href="index.php?action=all-restaurants" class="cityguides-navlink03">
                 restaurants
               </a>
-              <a href="linkagepage.html" class="cityguides-navlink04">
+              <a href="index.php?action=all-agencies" class="cityguides-navlink04">
                 agencies
               </a>
-              <a href="linkagepage.html" class="cityguides-navlink05">guides</a>
+              <a href="index.php?action=all-guides" class="cityguides-navlink05">guides</a>
             </nav>
           </div>
           <div class="cityguides-btn-group">
-            <a href="signup.html" class="cityguides-register button"> My profile </a>
+            <?php if ($role != "visitor" ) {
+
+ 
+            echo ' <a href="index.php?action=my_profile&role='.$role.'" class="cityguides-register button"> My profile </a>';
+            
+            }
+           
+            ?>
+           
           </div>
           <div data-role="BurgerMenu" class="cityguides-burger-menu">
             <svg viewBox="0 0 1024 1024" class="cityguides-icon02">
@@ -141,7 +149,7 @@
         <?php
           for ($i=0;$i<count($items);$i++){
 
-            $directory = "guides_galleries/".$items[0]['gallery_path']."/1.jpg";
+            $directory = "guides_galleries/".$items[$i]['gallery_path']."/0.jpg";
             ?>
            
 
@@ -158,8 +166,13 @@
                   <span class="cityguides-text04">
                   <?php echo htmlspecialchars($items[$i]['g_bio']);?>
                   </span>
+
+                  <span class="cityguides-text04">
+                  <?php echo htmlspecialchars($items[$i]['g_city']);?>
+                  </span>
+
                 </div>
-                <a href="index.php?action=guide_profile&name=<?php echo htmlspecialchars($items[$i]['g_name']);?>s" class="cityguides-navlink06">
+                <a href="index.php?action=guide_profile&mine=false&name=<?php echo htmlspecialchars($items[$i]['g_name']);?>" class="cityguides-navlink06">
                   visit profile -&gt;
                 </a>
               </div>
@@ -174,7 +187,7 @@
           
           
           <span class="cityguides-text11">see more -&gt;</span>
-          <a href="cityprofile.html" class="cityguides-navlink10 button">
+          <a href="index.php?action=find_city&city=<?php echo $city ;?>" class="cityguides-navlink10 button">
             back to city home
           </a>
         </div>

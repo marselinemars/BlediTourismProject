@@ -4,30 +4,46 @@ switch($vars['action']){
 
     
 
+    case "city_hotels":{
+
+    
+        $city=$_GET['city'];
+        $items = $db->query('SELECT name , address , gallery_path FROM hotel WHERE city= ?'  , $city )->fetchAll();
+
+
+        include("view/cityhotels.php");
+
+        exit;
+    
+        }break;
+        
    
     case "find_city":{
 
-    
-            $city=$_POST['city'];
+
+            $city=$vars['city'];
             header("location: index.php?action=city_profile&city=$city");
-    
+            
             exit;
         
             }break;
         
         
 
+
    case "city_profile":{
     //normally we acess the db to get statistics !!!!
 
 
+    $city = $_GET['city'];
 
-      //  $items = $db->query('SELECT * FROM guides WHERE LOWER(email) = ? AND pass = ? ' , $_COOKIE['app-email'] , $_COOKIE['app-pass'] )->fetchAll();
+      $guide_count = $db->query('SELECT COUNT(*) AS count FROM guides WHERE g_city = ? ' , $city )->fetchAll()[0]['count'];
+      $tourism_count = $db->query('SELECT COUNT(*) AS count FROM tourism WHERE wilaya = ? ' , $city )->fetchAll()[0]['count'];
+      $resto_count = $db->query('SELECT COUNT(*) AS count FROM resto WHERE city = ? ' , $city )->fetchAll()[0]['count'];
+      $agency_count = $db->query('SELECT COUNT(*) AS count FROM agency WHERE city = ? ' , $city )->fetchAll()[0]['count'];
+      $hotel_count = $db->query('SELECT COUNT(*) AS count FROM hotel WHERE city = ? ' , $city )->fetchAll()[0]['count'];
 
-
-
-
-        include("view/cityprofile.php");
+      include("view/cityprofile.php");
 
         exit;
 
@@ -45,19 +61,34 @@ switch($vars['action']){
         exit;
     
         }break;
+
+
+        case "city_agencies":{
+
     
+            $city=$_GET['city'];
+            $items = $db->query('SELECT name , bio , gallery_path , city  FROM agency WHERE city= ?'  , $city )->fetchAll();
+    
+    
+            include("view/agencies.php");
+    
+            exit;
+        
+            }break;
 
-    case "guide_add_to_gallery":{
+            case "city_restaurants":{
 
-        $ret = guide_add_image_to_gallery();
-        guide_add_info_to_gallery();
-
-        $db->query('UPDATE guides SET num_of_posts=num_of_posts+1 WHERE LOWER(email) = ? AND pass = ? ' , $_COOKIE['app-email'] , $_COOKIE['app-pass'] );
-
-        header("location: index.php?action=guide_profile");
-
-        exit;
-    }break;
+    
+                $city=$_GET['city'];
+                $items = $db->query('SELECT r_name , r_bio , gallery_path FROM restaurants WHERE r_city= ?'  , $city )->fetchAll();
+        
+        
+                include("view/restaurants.php");
+        
+                exit;
+            
+                }break;
+    
     
 
     

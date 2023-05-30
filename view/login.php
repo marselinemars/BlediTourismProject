@@ -57,19 +57,19 @@
             </svg>
             <div class="login-nav">
               <nav class="login-mynav">
-                <a href="index.html" class="login-navlink">home</a>
-                <a href="linkagepage.html" class="login-navlink1">tourism</a>
-                <a href="linkagepage.html" class="login-navlink2">hotels</a>
-                <a href="linkagepage.html" class="login-navlink3">
+                <a href="index.php?action=home" class="login-navlink">home</a>
+                <a href="index.php?action=all-tourism" class="login-navlink1">tourism</a>
+                <a href="index.php?action=all-hotels" class="login-navlink2">hotels</a>
+                <a href="index.php?action=all-restaurants" class="login-navlink3">
                   restaurants
                 </a>
-                <a href="linkagepage.html" class="login-navlink4">agencies</a>
-                <a href="linkagepage.html" class="login-navlink5">guides</a>
+                <a href="index.php?action=all-agencies" class="login-navlink4">agencies</a>
+                <a href="index.php?action=all-guides" class="login-navlink5">guides</a>
               </nav>
             </div>
             <div class="login-btn-group">
-              <a href="login.html" class="login-login button">Login</a>
-              <a href="signup.html" class="login-register button">sign up</a>
+              <a href="index.php?action=login" class="login-login button">Login</a>
+              <a href="index.php?action=sign_up" class="login-register button">sign up</a>
             </div>
             <div data-role="BurgerMenu" class="login-burger-menu">
               <svg viewBox="0 0 1024 1024" class="login-icon02">
@@ -161,8 +161,8 @@
               </div>
               <button style="position: relative;left: 10%;" class="login-button button">login</button>
               <div class="login-container12">
-                <a href="signup.html" class="login-navlink6 button">sign up</a>
-                <a href="linkagepage.html" class="login-navlink7 button">
+                <a href="index.php?action=sign_up" class="login-navlink6 button">sign up</a>
+                <a href="" class="login-navlink7 button">
                   password forgot
                 </a>
               </div>

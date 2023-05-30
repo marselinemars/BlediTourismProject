@@ -1,33 +1,4 @@
 
-<?php
-
-
-    function generateStarRating($numRatings) {
-      // Calculate the average rating, based on the number of ratings passed
-      $avgRating = $numRatings ;
-
-      // Generate the HTML code for the star rating
-      $html = '
-      <div class="star-rating" style="font-size: 24px; display: inline-block;white-space: nowrap; overflow: hidden;" >';
-      for ($i = 1; $i <= 5; $i++) {
-        if ($i <= $avgRating) {
-          $html .= '<i style="color: gold;" class="fa fa-star"></i>'; // Use a full star icon
-        } else if ($i == ceil($avgRating)) {
-          $html .= '<i style="color: gold;" class="fa fa-star-half-o"></i>'; // Use a half star icon
-        } else {
-          $html .= '<i style="color: gold;" class="fa fa-star-o"></i>'; // Use an empty star icon
-        }
-      }
-      $html .= '</div>';
-
-      // Return the HTML code
-      return $html;
-    }
-
-
-
-?> 
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -88,29 +59,6 @@
             }
 
 
-
-          div.myfeedback_container{
-
-            display:flex;
-            flex-direction: column;
-            align-items: center;
-          }
-
-          div.myfeedback_container>div{
-
-            width:90%;
-            margin-bottom: 40px ; 
-            height:400px;
-            display: flex;
-            align-items: flex-start;
-            flex-direction: column;
-            justify-content: flex-start;
-            background-color:rgba(57, 112, 123, 0.02);
-            border-radius:5px;
-            border: 2px solid rgba(57, 112, 123, 0.25);
-            padding:5%;
-
-          }
           div.mycard {
 
             width:32%;
@@ -130,45 +78,13 @@
             justify-content:space-between;
           }
 
-          div.mycircuit_container{
-
-          display:flex ; 
-          flex-direction:row; 
-          flex-wrap:wrap; 
-          grid-gap:0;
-          justify-content:center;
-
-          }
-
-          div.mycircuit_container>div{
-
-            width:45%;
-            margin-bottom: 40px ; 
-            height:400px;
-            display: flex;
-            align-items: flex-start;
-            flex-direction: column;
-            justify-content: flex-start;
-            background-color:rgba(57, 112, 123, 0.05);
-            border-radius:10px;
-            border: 5px solid rgba(57, 112, 123, 0.25);
-            padding:5%;
-            margin : 2%;
-
-            
-          }
-
           
           
 
-            div.mycircuit>h2{
-            color:rgba(57, 112, 123, 1);
-            font-size: 1.5em;
-            }
 
-          div.mycard:hover , div.myfeedback_container>div:hover ,  div.mycircuit_container>div:hover{
+          div.mycard:hover  {
 
-            transform:scale(1.15);
+            transform:scale(1.03);
           }
           img.mycard{
 
@@ -194,7 +110,9 @@
           }
 
           div.tab-content{
+
             display:none;
+
           }
 
 
@@ -213,6 +131,7 @@
 
           }
 
+
           #feedback-dialog {
           position: fixed;
           top: 50%;
@@ -225,8 +144,10 @@
           border-radius: 10px;
           width: auto;
 
-
           }
+
+
+
           #contact-dialog  {
           position: fixed;
           top: 50%;
@@ -261,7 +182,7 @@
 
           #contact-dialog>label {
 
-            font-size: 1.5em;
+            font-size: 1.1em;
             color:rgba(57, 112, 123, 1) ;
           }
 
@@ -271,20 +192,145 @@
           color:black ;
           }
 
-          #newpost_form>input, #newpost_form>label , #newpost_form>textarea , #newfeedback_form>input, #newfeedback_form>label , #newfeedback_form>textarea  {
+          #newpost_form>input, #newpost_form>label , #newpost_form>textarea , #newfeedback_form>input, #newfeedback_form>label , #newfeedback_form>textarea , #newcircuit_form>input, #newcircuit_form>label , #newcircuit_form>textarea  {
             display:block;
             margin:10px;
             
           }
 
-          #newpost_form>input[type="text"] , #newpost_form>textarea ,#newfeedback_form>input, #newfeedback_form>textarea{
+          #newpost_form>input[type="text"] , #newpost_form>textarea ,#newfeedback_form>input, #newfeedback_form>textarea ,  #newfeedback_form>textarea , #newcircuit_form>input,#newcircuit_form>textarea{
             
             border: 1px solid rgba(57, 112, 123, 1);
           }
 
 
 
+          .circuits-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 
+  .circuit-card {
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #333333;
+    margin-bottom: 20px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+    flex-basis: calc(33.33% - 40px);
+    max-width: calc(33.33% - 40px);
+  }
+
+  .circuit-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .circuit-title {
+    color: #6d3d6d;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  .circuit-description {
+    color: #777777;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    word-wrap: break-word;
+  }
+
+  .circuit-date {
+    color: #999999;
+    font-size: 14px;
+    font-style: italic;
+  }
+
+
+  .feedback-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .feedback-card {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #333333;
+    margin: 20px;
+    padding: 20px;
+    transition: transform 0.2s ease-in-out;
+    flex-basis: calc(50%);
+    max-width: calc(33.33% - 40px);
+  }
+
+  .feedback-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .rating {
+    margin-bottom: 10px;
+  }
+
+  .stars {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .star {
+    color: #fcd303;
+    font-size: 24px;
+    margin-right: 5px;
+    transform: rotate(-15deg);
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .star:hover {
+    transform: scale(1.2) rotate(-15deg);
+  }
+
+  .feedback-details {
+    text-align: left;
+  }
+
+  .author {
+    color: #6d3d6d;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .comment {
+    color: #777777;
+    font-size: 14px;
+    line-height: 1.5;
+    word-wrap: break-word;
+  }
+
+
+  .close-button {
+  background-color: transparent;
+  border: none;
+  color: rgba(57, 112, 123, 1) ;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 0;
+  position:fixed ;
+  right:10px;
+  top:10px;
+}
+
+.close-button:hover {
+  color:rgba(57, 112, 123, 0.5);
+}
+ 
 
         </style>
 
@@ -306,15 +352,43 @@
         // Show the clicked tab content and add active class to clicked tab button
         const clickedTabContent = document.getElementById(tabId);
         clickedTabContent.style.display = "flex";
+        if (tabId === 'tab1') {
+          
+        } else {
+          clickedTabContent.style.flexDirection = "column";
+        }
+
+        
+       
         event.currentTarget.classList.add("active");
       }
 
 
       function show_form(event){
 
+const formDialog = document.getElementById("form-dialog");
+
+  formDialog.style.display = "block";
+
+}
+
+
+      function close_dialog(event){
+
       const formDialog = document.getElementById("form-dialog");
 
-        formDialog.style.display = "block";
+      const feedabackDialog = document.getElementById("feedback-dialog");
+
+      const circuitDialog = document.getElementById("circuit-dialog");
+
+      const contactDialog = document.getElementById("contact-dialog");
+
+
+      formDialog.style.display = "none";
+      feedabackDialog.style.display ="none";
+      circuitDialog.style.display = "none";
+      contactDialog.style.display = "none";
+
 
     }
 
@@ -351,6 +425,9 @@ contactDialog.style.display = "block";
 
 
 
+
+
+
         
       </head>
   <body>
@@ -367,28 +444,32 @@ contactDialog.style.display = "block";
             </svg>
             <div class="guideprofie-nav">
               <nav class="guideprofie-mynav">
-                <a href="linkagepage.html" class="guideprofie-navlink">home</a>
-                <a href="linkagepage.html" class="guideprofie-navlink1">
+                <a href="index.php?action=home" class="guideprofie-navlink">home</a>
+                <a href="index.php?action=all-tourism" class="guideprofie-navlink1">
                   tourism
                 </a>
-                <a href="linkagepage.html" class="guideprofie-navlink2">
+                <a href="index.php?action=all-hotels" class="guideprofie-navlink2">
                   hotels
                 </a>
-                <a href="linkagepage.html" class="guideprofie-navlink3">
+                <a href="index.php?action=all-restaurants" class="guideprofie-navlink3">
                   restaurants
                 </a>
-                <a href="linkagepage.html" class="guideprofie-navlink4">
+                <a href="index.php?action=all-agencies" class="guideprofie-navlink4">
                   agencies
                 </a>
-                <a href="linkagepage.html" class="guideprofie-navlink5">
+                <a href="index.php?action=all-guides" class="guideprofie-navlink5">
                   guides
                 </a>
               </nav>
             </div>
             <div class="guideprofie-btn-group">
-              <a href="signup.html" class="guideprofie-register button">
-                My profile
-              </a>
+              
+        <?php if ($role !="visitor"){
+          
+            echo '<a href="index.php?action=my_profile&role='.$role.'" class="guideprofie-register button">
+            My profile
+          </a>' ; 
+        } ?>
             </div>
             <div data-role="BurgerMenu" class="guideprofie-burger-menu">
               <svg viewBox="0 0 1024 1024" class="guideprofie-icon02">
@@ -449,7 +530,7 @@ contactDialog.style.display = "block";
             <div class="guideprofie-container04">
               <img
                 alt="image"
-                src="https://images.unsplash.com/photo-1589800221366-5cf066781928?ixid=Mnw5MTMyMXwwfDF8c2VhcmNofDIwfHxwcm9maWx8ZW58MHx8fHwxNjc5MjYyMDg4&amp;ixlib=rb-4.0.3&amp;w=500"
+                src="<?php echo $pfp;?>"
                 class="guideprofie-image1"
               />
               <div class="guideprofie-container05">
@@ -472,8 +553,10 @@ contactDialog.style.display = "block";
                 </a>
 
                 <div id="contact-dialog" style="display:none;">
+                <button  onclick="close_dialog(event)" class="close-button">&#10006;</button>
          
                 <label  class="guideprofie-text18" for="">Socials and contacts : </label>
+                
                 <p   class="guideprofie-text18" >
                 '.$contacts.'
                 </p>
@@ -485,7 +568,7 @@ contactDialog.style.display = "block";
              
             </div>
           </div>
-          <a href="cityguides.html" class="guideprofie-navlink7 button">
+          <a href="index.php?action=all-guides" class="guideprofie-navlink7 button">
             back to all guides
           </a>
           
@@ -500,59 +583,73 @@ contactDialog.style.display = "block";
               <h1 class="guideprofie-text04">feedbacks</h1>
             </div>
           </div>
+
+
           <div   id="tab1" class="guideprofie-gallery tab-content active mycard_container">
 
           
           <?php
 
-
             $combined_array = array_combine($images, $info);
 
-            foreach ($combined_array as $image => $aninfo){
+            if (empty($combined_array)) {
+              echo '<p id="no_posts" style="overflow:hidden;" class="guideprofie-text07 mycard"> Ooooops . This guide has no posts yet ! </p> ';
+            } else {
+
+              foreach ($combined_array as $image => $aninfo){
               
 
-              $file_path = $aninfo;
-              $file_contents = file_get_contents($file_path);
-              $data = explode("|", $file_contents);
-              $title = $data[0];
-              $description = str_replace("[NEWLINE]", "\n", $data[1]);
-
-              echo '<div  class="guideprofie-gallery-card mycard">
-                <img
-                style="height:60%;"
-                  class="mycard"
-                  alt="image"
-                  src="' . $image . '"
-                  class="guideprofie-image2"
-                />
-                <div class="info" style="height:40%; width:100%; padding:2%;">
-                
-                <h2 class="guideprofie-text06 mycard">'.$title.'</h2>
-                <p style="word-wrap: break-word;" class="guideprofie-text07 mycard">'.$description.'</p></div>
-                
-              </div> ';
+                $file_path = $aninfo;
+                $file_contents = file_get_contents($file_path);
+                $data = explode("|", $file_contents);
+                $title = $data[0];
+                $description = str_replace("[NEWLINE]", "\n", $data[1]);
+  
+                echo '<div  class="guideprofie-gallery-card mycard">
+                  <img
+                  style="height:60%;"
+                    class="mycard"
+                    alt="image"
+                    src="' . $image . '"
+                    class="guideprofie-image2"
+                  />
+                  <div class="info" style="height:40%; width:100%; padding:2%;">
+                  
+                  <h2 class="guideprofie-text06 mycard">'.$title.'</h2>
+                  <p style="overflow:hidden;" class="guideprofie-text07 mycard">'.$description.'</p></div>
+                  
+                </div> ';
+              }
             }
+            
 
             ?>
 
 
            
-          
-          <button  style="display:block; width:100%;margin-top:60px;" id="show-form-btn"onclick="show_form(event)"><span class="guideprofie-text18">Add post -&gt;</span></button>
+         <?php if ($role==="guide" && $mine=='true'){
+
+          echo '<button  style="display:block; width:100%;margin-top:60px;" id="show-form-btn"onclick="show_form(event)"><span class="guideprofie-text18">Add post -&gt;</span></button>';
+
+         }
+         ?>
 
           <div id="form-dialog" style="display:none;">
-         <form id="newpost_form" action="index.php?action=guide_add_to_gallery" enctype="multipart/form-data"  method="post">
+
+          <button  onclick="close_dialog(event)" class="close-button">&#10006;</button>
+         <form id="newpost_form" action="" enctype="multipart/form-data"  method="post">
          <input type="file" name="newpost" id="file-input">
  
          <label for="">The title : </label>
-         <input type="text" name="title" id="" placeholder="write the title here ">
+         <input type="text" name="title" id="title-input" placeholder="write the title here ">
          <label for="">The description : </label>
-         <textarea id="messag" name="description" rows="5" cols="50" placeholder="write the description here"></textarea>
+         <textarea id="description-input" name="description" rows="5" cols="50" placeholder="write the description here"></textarea>
 
         
-        <button style="margin:20px auto 10px ; width:100%;" class = "button guideprofie-navlink6 " type="submit" name="submit-btn">Add</button>
+        <button id="add1" onclick = close_dialog(event) style="margin:20px auto 10px ; width:100%;" class = "button guideprofie-navlink6 " type="submit" name="submit-btn">Add</button>
 
         </form>
+        
         </div>
 
 
@@ -560,99 +657,143 @@ contactDialog.style.display = "block";
 
 
 
+
+
+
           <div id="tab2" class="guideprofie-gallery tab-content mycircuit_container ">
 
-          <?php
-          for ($i=0;$i<count($circuits);$i++){
-            ?>
-           
+        
+         <div id="tab2.1" class="circuits-container">
 
-           <div class="guideprofie-gallery-card mycircuit">
-              <h2 class="guideprofie-text06 mycard"><?php echo htmlspecialchars($circuits[$i]['title']);?> : </h2>
-              <br>
-              <span class="guideprofie-text07 mycard"><?php echo htmlspecialchars($circuits[$i]['description']);?> :</span>
-            </div>
+         <?php
+
+                
+        if (empty($circuits)) {
+          echo '<p id="no_circuits" style="overflow:hidden;" class="guideprofie-text07 mycard"> Ooooops . This guide has no circuits yet ! </p> ';
+        } else {
+
+          for ($i=0;$i<count($circuits);$i++){
+                  ?>
+        <div class="circuit-card">
+          <h2 class="circuit-title"><?php echo htmlspecialchars($circuits[$i]['title']);?> :</h2>
+          <p class="circuit-description"><?php echo htmlspecialchars($circuits[$i]['description']);?> </p>
+          <p class="circuit-date"><?php echo htmlspecialchars($circuits[$i]['date']);?></p>
+        </div>
+        <?php  }  }?>
+        
+        <!-- Add more circuit cards -->
+      </div>
+
+      
+      
+      <br>
+
+      <?php if ($role==="guide" && $mine=='true'){
+echo '<button  style="display:block; width:100%;margin-top:60px;" id="show-form-btn"onclick="show_circuit(event)"><span class="guideprofie-text18">Add circuit -&gt;</span></button>';
+      }?>
+
+<div id="circuit-dialog" style="display:none;">
+<button  onclick="close_dialog(event)" class="close-button">&#10006;</button>
+<form id="newcircuit_form" action="index.php?action=guide_add_circuit"  method="post">
+
+<label for="">The title of the circuit : </label>
+<input type="text" name="title" id="title-input-2" placeholder="write the title here ">
+<label for="">The date of the circuit : </label>
+<input type="date" name="date" id="date-input-2" placeholder="enter the date here ">
+<label for="">The description and details of the circuit : </label>
+<textarea id="description-input-2" name="description" rows="5" cols="50" placeholder="write the description here"></textarea>
+
+
+
+
+<button style="margin:20px auto 10px ; width:100%;" onclick="close_dialog(event)" class = "button guideprofie-navlink6 " type="submit"  name="submit-btn">Add</button>
+
+
+
+</form>
+</div>
+
+
+
+</div>
+
+
+
+
+
 
 
          
-         <?php  }?>
 
 
-              <br>
-
-              <button  style="display:block; width:100%;margin-top:60px;" id="show-form-btn"onclick="show_circuit(event)"><span class="guideprofie-text18">Add circuit -&gt;</span></button>
-
-
-              <div id="circuit-dialog" style="display:none;">
-              <form id="newpost_form" action="index.php?action=guide_add_circuit"  method="post">
-
-
-              <label for="">The title of the circuit : </label>
-              <input type="text" name="title" id="" placeholder="write the title here ">
-              <label for="">The description and details of the circuit : </label>
-              <textarea id="messag" name="description" rows="5" cols="50" placeholder="write the description here"></textarea>
-
-
-              <button style="margin:20px auto 10px ; width:100%;" class = "button guideprofie-navlink6 " type="submit" name="submit-btn">Add</button>
-
-              </form>
-              </div>
-
-
-          </div>
 
           <div id="tab3" class="guideprofie-gallery tab-content myfeedback_container">
-
-            
+          <div id="tab3.1" class="feedback-container">
           <?php
+          if (empty($feedbacks)) {
+            echo '<p id="no_feedbacks" style="overflow:hidden;" class="guideprofie-text07 mycard"> Ooooops . This guide has no feedbacks yet ! </p> ';
+          } else {
+  
           for ($i=0;$i<count($feedbacks);$i++){
             $starhtml= generateStarRating ($feedbacks[$i]['rating']);
             ?>
-           
 
-           
-
-           <div class="guideprofie-gallery-card mycircuit">
-                <h2 class="guideprofie-text06 mycard"> By: </h2>
-                <span class="guideprofie-text07 mycard"><?php echo htmlspecialchars($feedbacks[$i]['visitor']);?> </span>
-  
-                <h2 class="guideprofie-text06 mycard"> Rating: </h2>
-                
-                <?php echo $starhtml ;?>
-
-                <h2 class="guideprofie-text06 mycard"> Opinion: </h2>
-                <span class="guideprofie-text07 mycard"><?php echo htmlspecialchars($feedbacks[$i]['opinion']);?> </span>
-  
-                
-              </div>
-
-
-         <?php  }?>
-  
-
-
-
-                <br>
-
-              <button  style="display:block; width:100%;margin-top:60px;" id="show-form-btn"onclick="show_feedback(event)"><span class="guideprofie-text18">Add feedback -&gt;</span></button>
-
-
-              <div id="feedback-dialog" style="display:none;">
-              <form id="newfeedback_form" action="index.php?action=guide_add_feedback"  method="post">
-
-
-              <label for="">your rating of this : </label>
-              <input type="number" max="5" min="0" step="0.5 " name="rating" id="" placeholder="/5">
-              <label for=""> your opinion about this guide :  </label>
-              <textarea id="messag" name="opinion" rows="5" cols="50" placeholder="write your opinion here"></textarea>
-
-
-              <button for ="newfeedback_form" style="margin:20px auto 10px ; width:100%;" class = "button guideprofie-navlink6 " type="submit" name="submit-btn">Add</button>
-
-              </form>
-              </div>
-
+          <div class="feedback-card">
+          
+          <div class="rating">
+            <div class="stars">
+              <?php echo $starhtml ;?>
+            </div>
           </div>
+          <div class="feedback-details">
+            <p class="author"><?php echo htmlspecialchars($feedbacks[$i]['visitor']);?> </p>
+            <p class="comment"><?php echo htmlspecialchars($feedbacks[$i]['opinion']);?></p>
+          </div>
+
+        </div>
+
+        <?php  } }?>
+
+        </div>
+
+
+        
+
+        <br>
+
+        <?php if ($role === "visitor" ) {
+echo '<button  style="display:block; width:100%;margin-top:60px;" id="show-form-btn"onclick="show_feedback(event)"><span class="guideprofie-text18">Add feedback -&gt;</span></button>';
+        } ?>
+
+<div id="feedback-dialog" style="display:none;">
+<button  onclick="close_dialog(event)" class="close-button">&#10006;</button>
+<form id="newfeedback_form" action="index.php?action=guide_add_feedback"  method="post">
+
+
+<label for="">your rating of this : </label>
+<input type="number" max="5" min="0" step="0.5" name="rating" id="title-input-3" placeholder="/5">
+<label for=""> your opinion about this guide :  </label>
+<textarea id="description-input-3" name="opinion" rows="5" cols="50" placeholder="write your opinion here"></textarea>
+
+
+<button for ="newfeedback_form" onclick="close_dialog(event)" style="margin:20px auto 10px ; width:100%;" class = "button guideprofie-navlink6 " type="submit" name="submit-btn">Add</button>
+
+</form>
+
+</div>
+
+
+
+        </div>
+                    
+          
+
+
+
+         
+
+
+          
 
 
 
@@ -697,10 +838,226 @@ contactDialog.style.display = "block";
         </div>
       </div>
     </div>
+
+    
+
+
+ <script>
+ // JavaScript function to handle file upload and send AJAX request
+function uploadImage() 
+{
+  // Retrieve the file input element
+  var fileInput = document.getElementById('file-input');
+
+  // Retrieve the title and description from form inputs
+  var titleInput = document.getElementById('title-input');
+  var descriptionInput = document.getElementById('description-input');
+  var title = titleInput.value;
+  var description = descriptionInput.value;
+
+  // Create a new FormData object
+  var formData = new FormData();
+  formData.append('newpost', fileInput.files[0]);
+  formData.append('title', title);
+  formData.append('description', description);
+
+  // Create a new XMLHttpRequest object
+  var xhr = new XMLHttpRequest();
+
+  // Define the AJAX request
+  xhr.open('POST', 'index.php?action=guide_add_to_gallery', true);
+
+  // Set the onload function to handle the AJAX response
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      if (xhr.responseText) {
+        try {
+          //alert(xhr.responseText);
+          var response = JSON.parse(xhr.responseText);
+          var html = response.html;
+
+          var tab1 = document.getElementById('tab1');
+          tab1.insertAdjacentHTML('afterbegin', html);
+          const nopost = document.getElementById('no_posts');
+          nopost.style.display ="none";
+          
+
+          // Clear the form inputs
+          titleInput.value = '';
+          descriptionInput.value = '';
+        } catch (error) {
+          console.error('Error parsing JSON:', error);
+        }
+      } else {
+        console.error('Empty response');
+      }
+    }
+  };
+
+  // Send the AJAX request
+  xhr.send(formData);
+}
+
+document.getElementById('newpost_form').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent form submission
+
+  uploadImage(); // Call the uploadImage() function
+  // You can perform additional actions or show loading indicators here
+  // ...
+});
+
+
+
+</script>
+
+
+<script>
+ // JavaScript function to handle file upload and send AJAX request
+function add_circuit() 
+{
+  // Retrieve the title and description from form inputs
+  var titleInput = document.getElementById('title-input-2');
+  var descriptionInput = document.getElementById('description-input-2');
+  var dateInput = document.getElementById('date-input-2');
+  var title = titleInput.value;
+  var date = dateInput.value;
+  var description = descriptionInput.value;
+
+  // Create a new FormData object
+  var formData = new FormData();
+  formData.append('title', title);
+  formData.append('description', description);
+  formData.append('date', date);
+
+  // Create a new XMLHttpRequest object
+  var xhr = new XMLHttpRequest();
+
+  // Define the AJAX request
+  xhr.open('POST', 'index.php?action=guide_add_circuit', true);
+
+  // Set the onload function to handle the AJAX response
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      if (xhr.responseText) {
+        try {
+          var response = JSON.parse(xhr.responseText);
+          var html = response.html;
+
+          var tab1 = document.getElementById('tab2.1');
+          tab1.insertAdjacentHTML('beforeend', html);
+          const nocircuit = document.getElementById('no_circuits');
+          nocircuit.style.display ="none";
+
+
+          // Clear the form inputs
+          titleInput.value = '';
+          descriptionInput.value = '';
+        } catch (error) {
+          console.error('Error parsing JSON:', error);
+        }
+      } else {
+        console.error('Empty response');
+      }
+    }
+  };
+
+  // Send the AJAX request
+  xhr.send(formData);
+}
+
+document.getElementById('newcircuit_form').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent form submission
+
+  add_circuit(); // Call the uploadImage() function
+  // You can perform additional actions or show loading indicators here
+  // ...
+});
+
+
+
+</script>
+
+
+
+
+
+<script>
+ // JavaScript function to handle file upload and send AJAX request
+function add_feedback() 
+{
+  // Retrieve the title and description from form inputs
+  var titleInput = document.getElementById('title-input-3');
+  var descriptionInput = document.getElementById('description-input-3');
+  var title = titleInput.value;
+  var description = descriptionInput.value;
+  var name = '<?php echo $g_name; ?>';
+
+  alert(name );
+  alert(title);
+  alert (description);
+  // Create a new FormData object
+  var formData = new FormData();
+
+  formData.append('title', title);
+  formData.append('description', description);
+  formData.append('name', name);
+
+  // Create a new XMLHttpRequest object
+  var xhr = new XMLHttpRequest();
+
+  // Define the AJAX request
+  xhr.open('POST', 'index.php?action=guide_add_feedback', true);
+
+  // Set the onload function to handle the AJAX response
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      if (xhr.responseText) {
+        try {
+          var response = JSON.parse(xhr.responseText);
+          var html = response.html;
+
+          var tab1 = document.getElementById('tab3.1');
+          tab1.insertAdjacentHTML('beforeend', html);
+          const nofeedback = document.getElementById('no_feedbacks');
+          nofeedback.style.display ="none";
+
+
+          // Clear the form inputs
+          titleInput.value = '';
+          descriptionInput.value = '';
+        } catch (error) {
+          console.error('Error parsing JSON:', error);
+        }
+      } else {
+        console.error('Empty response');
+      }
+    }
+  };
+
+  // Send the AJAX request
+  xhr.send(formData);
+}
+
+document.getElementById('newfeedback_form').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent form submission
+
+  add_feedback(); 
+  // You can perform additional actions or show loading indicators here
+  // ...
+});
+
+
+
+</script>
+
+
+
     <script
       data-section-id="header"
       src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
     ></script>
+
+    
   </body>
 </html>
 

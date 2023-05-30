@@ -1,13 +1,9 @@
 <?php 
 
-function guide_get_gallery (){
-
-
-    $_COOKIE['app-email']='jiji.16hamza@gmail.com';
-    $_COOKIE['app-pass']='1611';
+function guide_get_gallery ($g_name){
 
     global $db;
-    $items = $db->query('SELECT gallery_path FROM guides WHERE LOWER(email) = ? AND pass = ? ' , $_COOKIE['app-email'] , $_COOKIE['app-pass'] )->fetchAll();
+    $items = $db->query('SELECT gallery_path FROM guides WHERE g_name = ?' , $g_name )->fetchAll();
 
 
     $directory = "guides_galleries/".$items[0]['gallery_path']."/"; // The directory where your images are stored
@@ -28,7 +24,14 @@ foreach ($files as $file) {
   }
 }
 
-return $images ;
+
+$pfp = array_shift($images);
+
+
+return array(
+  "0" => $images,
+  "1" => $pfp
+);
 
 }
 
@@ -37,11 +40,9 @@ return $images ;
 function guide_add_image_to_gallery (){
 
 
-    $_COOKIE['app-email']='jiji.16hamza@gmail.com';
-    $_COOKIE['app-pass']='1611';
 
     global $db;
-    $items = $db->query('SELECT gallery_path , num_of_posts FROM guides WHERE LOWER(email) = ? AND pass = ? ' , $_COOKIE['app-email'] , $_COOKIE['app-pass'] )->fetchAll();
+    $items = $db->query('SELECT gallery_path , num_of_posts FROM guides WHERE LOWER(email) = ? AND pass = ? ' , $_COOKIE['app_email'] , $_COOKIE['app_pass'] )->fetchAll();
 
     $directory = "guides_galleries/".$items[0]['gallery_path']."/"; // The directory where your images are stored
     $num_of_posts=intval($items[0]['num_of_posts'])+1;
@@ -85,18 +86,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
 
 
-  return $ret ;
+  return $targetFile ;
 }
 
 
 function guide_add_info_to_gallery (){
 
 
-    $_COOKIE['app-email']='jiji.16hamza@gmail.com';
-    $_COOKIE['app-pass']='1611';
-
     global $db;
-    $items = $db->query('SELECT gallery_path , num_of_posts FROM guides WHERE LOWER(email) = ? AND pass = ? ' , $_COOKIE['app-email'] , $_COOKIE['app-pass'] )->fetchAll();
+    $items = $db->query('SELECT gallery_path , num_of_posts FROM guides WHERE LOWER(email) = ? AND pass = ? ' , $_COOKIE['app_email'] , $_COOKIE['app_pass'] )->fetchAll();
 
     $num_of_posts=intval($items[0]['num_of_posts'])+1;
     $file_name = strval($num_of_posts);
@@ -112,18 +110,19 @@ function guide_add_info_to_gallery (){
     
         file_put_contents($targetFile, $data, FILE_APPEND);
     }
+
+    $info=array('title'=> $_POST['title'] , 'description'=>  $_POST['description']);
+
+    return $info ;
 }
 
 
 
-function guide_get_info (){
+function guide_get_info ($g_name){
 
-
-    $_COOKIE['app-email']='jiji.16hamza@gmail.com';
-    $_COOKIE['app-pass']='1611';
 
     global $db;
-    $items = $db->query('SELECT gallery_path FROM guides WHERE LOWER(email) = ? AND pass = ? ' , $_COOKIE['app-email'] , $_COOKIE['app-pass'] )->fetchAll();
+    $items = $db->query('SELECT gallery_path FROM guides WHERE g_name = ?' , $g_name)->fetchAll();
 
 
     $directory = "guides_galleries/".$items[0]['gallery_path']."/"; // The directory where your images are stored
@@ -153,20 +152,23 @@ return $info ;
 function guide_add_circuit (){
 
 
-  $_COOKIE['app-email']='jiji.16hamza@gmail.com';
-  $_COOKIE['app-pass']='1611';
-
   global $db;
-  $items = $db->query('SELECT g_name  FROM guides WHERE LOWER(email) = ? AND pass = ? ' , $_COOKIE['app-email'] , $_COOKIE['app-pass'] )->fetchAll();
+  $items = $db->query('SELECT g_name  FROM guides WHERE LOWER(email) = ? AND pass = ? ' , $_COOKIE['app_email'] , $_COOKIE['app_pass'] )->fetchAll();
 
 
       $name=$items[0]['g_name'];
       $title = $_POST['title'];
       $description = $_POST['description'];
 
-      $db->query('INSERT INTO circuits (guide , title , description) VALUES ( ? , ? , ? ) ' , $name , $title , $description); 
+      $date = $_POST['date'];
+
+      $db->query('INSERT INTO circuits (guide , title , description,date) VALUES ( ? , ? , ? , ? ) ' , $name , $title , $description , $date ); 
 
   
+      $info=array('title'=> $_POST['title'] , 'description'=>  $_POST['description'] , 'date'=> $_POST['date']);
+
+    return $info ;
+
   
 }
 
@@ -175,25 +177,47 @@ function guide_add_circuit (){
 function guide_add_feedback (){
 
 
-  $_COOKIE['app-email']='jiji.16hamza@gmail.com';
-  $_COOKIE['app-pass']='1611';
-  $_COOKIE['guide-name']='hamza djamila amani';
   
-
   global $db;
-  $items = $db->query('SELECT v_name FROM visitor WHERE LOWER(email) = ? AND pass = ? ' , $_COOKIE['app-email'] , $_COOKIE['app-pass'] )->fetchAll();
+  $items = $db->query('SELECT name FROM visitor WHERE LOWER(email) = ? AND pass = ? ' , $_COOKIE['app_email'] , $_COOKIE['app_pass'] )->fetchAll();
 
-
-      $name=$items[0]['v_name'];
-      $rating = $_POST['rating'];
-      $opinion = $_POST['opinion'];
-
-      $db->query('INSERT INTO feedbacks (visitor , rating , opinion , guide) VALUES ( ? , ? , ? , ? ) ' , $name , $rating , $opinion,$_COOKIE['guide-name'] ); 
+      $v_name=$items[0]['name'];
+      $rating = $_POST['title'];
+      $opinion = $_POST['description'];
+      $stars= generateStarRating($rating);
+      $name = $_POST['name'];
+      $db->query('INSERT INTO feedbacks (visitor , rating , opinion , guide) VALUES ( ? , ? , ? , ? ) ' , $v_name , $rating , $opinion,$name ); 
 
   
+      $info=array('stars'=> $stars , 'description'=>  $_POST['description'],'name'=>$v_name);
+
+    return $info ;
   
 }
 
+
+
+function generateStarRating($numRatings) {
+  // Calculate the average rating, based on the number of ratings passed
+  $avgRating = $numRatings ;
+
+  // Generate the HTML code for the star rating
+  $html = '
+  <div class="star-rating" style="font-size: 24px; display: inline-block;white-space: nowrap; overflow: hidden;" >';
+  for ($i = 1; $i <= 5; $i++) {
+    if ($i <= $avgRating) {
+      $html .= '<i style="color: gold;" class="star fa fa-star"></i>'; // Use a full star icon
+    } else if ($i == ceil($avgRating)) {
+      $html .= '<i style="color: gold;" class="star fa fa-star-half-o"></i>'; // Use a half star icon
+    } else {
+      $html .= '<i style="color: gold;" class="star fa fa-star-o"></i>'; // Use an empty star icon
+    }
+  }
+  $html .= '</div>';
+
+  // Return the HTML code
+  return $html;
+}
 
 
 ?>

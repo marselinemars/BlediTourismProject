@@ -12,11 +12,15 @@ include("lib/utils.php");
 include("lang/".APP_LANG.".php");
 
 include("lib/func.user.php");
-include("lib/func.student.php");
-include("lib/func.monitor.php");
 
 include("lib/func.owner.php");
 include("lib/func.guide.php");
+include("lib/func.city.php");
+include("lib/func.tourism.php");
+include("lib/func.agency.php");
+include("lib/func.hotel.php");
+include("lib/func.restaurant.php");
+
 
 
 
@@ -31,10 +35,5 @@ $dbname = 'bleditourism';
 $db = new db($dbhost, $dbuser, $dbpass, $dbname);
 
 $vars=get_input_vars();
-
-$_COOKIE['app-email']='jiji.16hamza@gmail.com';
-$_COOKIE['app-pass']='1611';
-$_COOKIE['user']='';
-
-
+$role = $_COOKIE['user'];
 ?>

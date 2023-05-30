@@ -1,11 +1,47 @@
+
 <?php
-if (!isset($_COOKIE['user'])) {
-  // user is not logged in, disable links and forms
-  $disabledAttr = "disabled";
-} else {
-  // user is logged in, enable links and forms
-  $disabledAttr = "";
-}
+$cities = array(
+    "Algiers",
+    "Oran",
+    "Constantine",
+    "Annaba",
+    "Blida",
+    "Batna",
+    "Djelfa",
+    "Sétif",
+    "Sidi bel",
+    "Biskra",
+    "Tébessa",
+    "Skikda",
+    "Tiaret",
+    "Béjaïa",
+    "Tlemcen",
+    "Béchar",
+    "Mostaganem",
+    "Bordj Bou",
+    "Chlef",
+    "Souk Ahras",
+    "El Eulma",
+    "Médéa",
+    "Tizi Ouzou",
+    "Jijel",
+    "Laghouat",
+    "El Oued",
+    "Ouargla",
+    "M'Sila",
+    "Relizane",
+    "Saïda",
+    "Bou Saâda",
+    "Guelma",
+    "Aïn Beïda",
+    "Maghnia",
+    "Mascara",
+    "Khenchela",
+    "Barika",
+    "Messaad",
+    "Aflou",
+    "Aïn Oussara"
+);
 ?>
 
 
@@ -64,33 +100,42 @@ if (!isset($_COOKIE['user'])) {
             <div class="homepage-nav">
               <nav class="homepage-mynav">
                 <a href="index.php?action=home" class="homepage-navlink">home</a>
-                <a href="linkagepage.html " class="homepage-navlink01" <?php echo $disabledAttr; ?>>
+                <a id="t" href="index.php?action=all-tourism " class="homepage-navlink01" <?php echo $disabledAttr; ?>>
                   tourism
                 </a>
-                <a href="linkagepage.html" class="homepage-navlink02" <?php echo $disabledAttr; ?>>hotels</a>
-                <a href="linkagepage.html" class="homepage-navlink03" <?php echo $disabledAttr; ?>>
+                <a  id ="h"href="index.php?action=all-hotels" class="homepage-navlink02" <?php echo $disabledAttr; ?>>hotels</a>
+                <a id="r" href="index.php?action=all-restaurants" class="homepage-navlink03" <?php echo $disabledAttr; ?>>
                   restaurants
                 </a>
-                <a href="linkagepage.html" class="homepage-navlink04" <?php echo $disabledAttr; ?>>
+                <a id="a" href="index.php?action=all-agencies" class="homepage-navlink04" <?php echo $disabledAttr; ?>>
                   agencies
                 </a>
-                <a href="linkagepage.html" class="homepage-navlink05" <?php echo $disabledAttr; ?>>guides</a>
+                <a id="guideslink" href="index.php?action=all-guides" class="homepage-navlink05" <?php echo $disabledAttr; ?>>guides</a>
               </nav>
             </div>
             <div class="homepage-btn-group">
 
-              <?php if(isset($_COOKIE['user']))
+              <?php if(empty($_COOKIE['user']))
               {
 
-                echo '<a href="index.php?action=my_profile" class="homepage-login button">My profile </a>';
-
+                echo '<a href="index.php?action=login" class="homepage-login button">Login</a>
+                <a   href="index.php?action=sign_up"  class="homepage-register button">sign up</a>';
+                
               }
 
               else {
 
 
-                echo '<a href="index.php?action=login" class="homepage-login button">Login</a>
-              <a   href="index.php?action=sign_up"  class="homepage-register button">sign up</a>';
+               
+
+                if($role!="visitor"){
+
+
+                 echo '<a href="index.php?action=my_profile&role='.$role.'" class="homepage-login button">My profile </a>';
+
+                }
+              
+
 
               }
 
@@ -158,23 +203,40 @@ if (!isset($_COOKIE['user'])) {
                 and restaurants for the ultimate travel experience.
               </span>
             </div>
+
             <div class="homepage-container05">
+
   <div class="homepage-container06">
     <span class="homepage-text02">enter your destination</span>
+
   </div>
 
-  <form id="myForm" style="width:60%;height:100%;" action="index.php?action=find_city" method="post" <?php echo $disabledAttr; ?> >
-    <input style="width:100%;" name="city" type="text" placeholder="exp : algiers" class="homepage-textinput input" />
-  </form>
+  <form id="myForm" style="width:60%;height:100%;" action="index.php?action=find_city" method="post"  >
+
+  <select id="wilaya" style="
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+" name="city">
+
+
+    <?php foreach ($cities as $city) { ?>
+        <option  style="padding : 5px ; " value="<?php echo $city; ?>" ><?php echo $city; ?></option>
+    <?php } ?>
+  </select>  
+
+</form>
 
 </div>
 
-<button id="mySubmitButton" style="width:20%;height:50px;border-radius:100px;margin-top : 30px; background-color: #39707B; cursor:pointer;" type="button"><span class="homepage-text02">Search</span></button>
+<button id="mySubmitButton" style="width:20%;height:50px;border-radius:100px;margin-top : 30px; background-color: #39707B; cursor:pointer;" type="button"  <?php echo $disabledAttr; ?>><span class="homepage-text02">Search</span></button>
 
 
 
           </div>
-          <div class="homepage-banner">
+          <div id="signup_login" class="homepage-banner">
             <div class="homepage-container07">
               <h1 class="homepage-text03">Your journey begins now !</h1>
               <span class="homepage-text04">
@@ -190,7 +252,7 @@ if (!isset($_COOKIE['user'])) {
                   <span></span>
                 </span>
               </span>
-              <div class="homepage-btn-group1">
+              <div  class="homepage-btn-group1">
                 <a href="index.php?action=login" class="homepage-navlink06 button">
                   log in&nbsp;
                 </a>
@@ -230,7 +292,7 @@ if (!isset($_COOKIE['user'])) {
                     explore this mesmerizing destination!
                   </span>
                 </div>
-                <a href="index.php?action=city_profile&city=tamanrasset" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
+                <a id = "tamanrasset" href="index.php?action=city_profile&city=tamanrasset" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
                   explore more
                 </a>
               </div>
@@ -249,7 +311,7 @@ if (!isset($_COOKIE['user'])) {
                     best of Bejaia with our e-tourism website.
                   </span>
                 </div>
-                <a href="index.php?action=city_profile&city=bejaia" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
+                <a id="bejaia"  href="index.php?action=city_profile&city=bejaia" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
                   explore more
                 </a>
               </div>
@@ -269,7 +331,7 @@ if (!isset($_COOKIE['user'])) {
                     e-tourism website.
                   </span>
                 </div>
-                <a href="index.php?action=city_profile&city=tizi-ouzou" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
+                <a id="tizi" href="index.php?action=city_profile&city=tizi-ouzou" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
                   explore more
                 </a>
               </div>
@@ -288,7 +350,7 @@ if (!isset($_COOKIE['user'])) {
                     beauty of this North African gem.
                   </span>
                 </div>
-                <a href="index.php?action=city_profile&city=algiers" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
+                <a id="algiers" href="index.php?action=city_profile&city=algiers" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
                   explore more
                 </a>
               </div>
@@ -307,7 +369,7 @@ if (!isset($_COOKIE['user'])) {
                     unforgettable travel experience
                   </span>
                 </div>
-                <a href="index.php?action=city_profile&city=annaba" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
+                <a id="annaba" href="index.php?action=city_profile&city=annaba" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
                   explore more
                 </a>
               </div>
@@ -326,7 +388,7 @@ if (!isset($_COOKIE['user'])) {
                     travel experience.&nbsp; &nbsp;
                   </span>
                 </div>
-                <a href="index.php?action=city_profile&city=oran" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
+                <a id="oran" href="index.php?action=city_profile&city=oran" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
                   explore more
                 </a>
               </div>
@@ -357,7 +419,7 @@ if (!isset($_COOKIE['user'])) {
                   </span>
                 </span>
               </div>
-              <a href="index.php?action=all-hotels" class="homepage-navlink09 button" <?php echo $disabledAttr; ?>>
+              <a id="hotels" href="index.php?action=all-hotels" class="homepage-navlink09 button" <?php echo $disabledAttr; ?>>
                 discover more
               </a>
             </div>
@@ -400,7 +462,7 @@ if (!isset($_COOKIE['user'])) {
                   </span>
                 </span>
               </div>
-              <a href="index.php?action=all-restaurants" class="homepage-navlink09 button" <?php echo $disabledAttr; ?>>
+              <a id="restaurants" href="index.php?action=all-restaurants" class="homepage-navlink09 button" <?php echo $disabledAttr; ?>>
                 discover more
               </a>
             </div>
@@ -415,7 +477,7 @@ if (!isset($_COOKIE['user'])) {
                   find your favorite agency and book your trip now !
                 </span>
               </div>
-              <a href="index.php?action=all-agencies" class="homepage-navlink09 button" <?php echo $disabledAttr; ?>>
+              <a id="agencies" href="index.php?action=all-agencies" class="homepage-navlink09 button" <?php echo $disabledAttr; ?>>
                 discover more
               </a>
             </div>
@@ -444,7 +506,7 @@ if (!isset($_COOKIE['user'])) {
                   meet the best guides ever and have fun with them !
                 </span>
               </div>
-              <a href="index.php?action=all-guides" class="homepage-navlink09 button" <?php echo $disabledAttr; ?>>
+              <a id ="guides"href="index.php?action=all-guides" class="homepage-navlink09 button" <?php echo $disabledAttr; ?>>
                 discover more
               </a>
             </div>
@@ -487,7 +549,7 @@ if (!isset($_COOKIE['user'])) {
 
 
 
-    <script>
+<script>
       var submitButton = document.getElementById("mySubmitButton");
       var form = document.getElementById("myForm");
 
@@ -495,6 +557,8 @@ if (!isset($_COOKIE['user'])) {
         form.submit();
       });
 </script>
+
+
 
 <script>
 
@@ -516,6 +580,118 @@ if (!document.cookie.includes('user')) {
   });
 }
     </script>
+
+    <script>
+
+    var scrollBtn1 = document.getElementById("guides");
+    var scrollBtn2 = document.getElementById("hotels");
+    var scrollBtn3 = document.getElementById("restaurants");
+    var scrollBtn4 = document.getElementById("agencies");
+
+    var scrollBtn5 = document.getElementById("tamanrasset");
+    var scrollBtn6 = document.getElementById("algiers");
+    var scrollBtn7 = document.getElementById("annaba");
+    var scrollBtn8 = document.getElementById("oran");
+    var scrollBtn9 = document.getElementById("tizi");
+    var scrollBtn10 = document.getElementById("bejaia");
+    var scrollBtn11 = document.getElementById("wilaya");
+   
+
+    var scrollBtn12 = document.getElementById("t");
+    var scrollBtn13 = document.getElementById("h");
+    var scrollBtn14 = document.getElementById("r");
+    var scrollBtn15 = document.getElementById("a");
+    var scrollBtn16 = document.getElementById("guideslink");
+
+
+var targetSection = document.getElementById("signup_login");
+
+scrollBtn1.addEventListener("click", function() {
+  targetSection.scrollIntoView({ behavior: "smooth" });
+});
+
+
+scrollBtn2.addEventListener("click", function() {
+  targetSection.scrollIntoView({ behavior: "smooth" });
+});
+
+scrollBtn3.addEventListener("click", function() {
+  targetSection.scrollIntoView({ behavior: "smooth" });
+});
+
+scrollBtn4.addEventListener("click", function() {
+  targetSection.scrollIntoView({ behavior: "smooth" });
+  
+});
+
+
+scrollBtn5.addEventListener("click", function() {
+  targetSection.scrollIntoView({ behavior: "smooth" });
+});
+
+
+scrollBtn6.addEventListener("click", function() {
+  targetSection.scrollIntoView({ behavior: "smooth" });
+});
+
+scrollBtn7.addEventListener("click", function() {
+  targetSection.scrollIntoView({ behavior: "smooth" });
+});
+
+scrollBtn8.addEventListener("click", function() {
+  targetSection.scrollIntoView({ behavior: "smooth" });
+  
+});
+
+scrollBtn9.addEventListener("click", function() {
+  targetSection.scrollIntoView({ behavior: "smooth" });
+});
+
+scrollBtn10.addEventListener("click", function() {
+  targetSection.scrollIntoView({ behavior: "smooth" });
+  
+});
+
+scrollBtn11.addEventListener("click", function() {
+
+  var test = '<?php echo $disabledAttr; ?>';
+  if(test==='disabled'){
+
+    targetSection.scrollIntoView({ behavior: "smooth" });
+  }
+    
+});
+
+scrollBtn12.addEventListener("click", function() {
+  targetSection.scrollIntoView({ behavior: "smooth" });
+});
+
+scrollBtn13.addEventListener("click", function() {
+  targetSection.scrollIntoView({ behavior: "smooth" });
+  
+});
+
+scrollBtn14.addEventListener("click", function() {
+  targetSection.scrollIntoView({ behavior: "smooth" });
+});
+
+scrollBtn15.addEventListener("click", function() {
+  targetSection.scrollIntoView({ behavior: "smooth" });
+  
+});
+
+
+scrollBtn16.addEventListener("click", function() {
+  targetSection.scrollIntoView({ behavior: "smooth" });
+  
+});
+
+
+
+
+
+    </script>
+  
 
 
   </body>

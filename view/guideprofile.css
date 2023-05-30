@@ -5,6 +5,7 @@
     min-height: 100vh;
     align-items: center;
     flex-direction: column;
+    
   }
   .guideprofie-container01 {
     width: 100%;
@@ -469,17 +470,6 @@
   .guideprofie-text05 {
     color: rgb(57, 112, 123);
     text-transform: capitalize;
-  }
-  .guideprofie-gallery {
-    width: 80%;
-    display: grid;
-    padding: var(--dl-space-space-threeunits);
-    grid-gap: var(--dl-space-space-unit);
-    position: relative;
-    max-width: 80%;
-    box-shadow: 5px 5px 30px 10px rgba(57, 112, 123, 0.38);
-    margin-bottom: var(--dl-space-space-threeunits);
-    grid-template-columns: 1fr 1fr 1fr;
   }
   .guideprofie-gallery-card {
     width: 100%;

@@ -4,6 +4,12 @@ switch($vars['action']){
     
 
     case "home":{
+ 
+      if (!isset($_COOKIE['user'])){
+         $disabledAttr='disabled';
+      }else{
+         $disabledAttr='';
+      }
 
         include("view/homepage.php");
         exit;
@@ -40,7 +46,8 @@ switch($vars['action']){
     
     case "logout":{
 	    setcookie("app_email", "" , -1,"/");
-	    setcookie("app_pass", "", -1,"/");        
+	    setcookie("app_pass", "", -1,"/"); 
+       setcookie("user", "", -1,"/");          
 	    header("location: index.php?action=login"); 
 	    exit;
     }break;    

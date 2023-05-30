@@ -6,13 +6,16 @@ include("init.php");
 include("modules/user.php");
 include("modules/guide.php");
 
-include("modules/owner.php");
 include("modules/city.php");
+include("modules/tourism.php");
+include("modules/agency.php");
+include("modules/hotel.php");
+include("modules/restaurant.php");
+
 
 //Modules to be accessed only by logged users...
 
-include("modules/student.php");
-include("modules/owner.php");
+include("modules/all.php");
 
 
 
