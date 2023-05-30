@@ -3,5 +3,5 @@ you need to create the following folders in the server :
 agency_galleries
 guides_galleries
 hotels_galleries
-tourism_galleries
+Tourism_galleries
 resto_galleries
