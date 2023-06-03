@@ -10,6 +10,7 @@ switch($vars['action']){
         $city=$_GET['city'];
         $items = $db->query('SELECT name , address , gallery_path FROM hotel WHERE city= ?'  , $city )->fetchAll();
 
+        
 
         include("view/cityhotels.php");
 
@@ -38,10 +39,15 @@ switch($vars['action']){
     $city = $_GET['city'];
 
       $guide_count = $db->query('SELECT COUNT(*) AS count FROM guides WHERE g_city = ? ' , $city )->fetchAll()[0]['count'];
-      $tourism_count = $db->query('SELECT COUNT(*) AS count FROM tourism WHERE wilaya = ? ' , $city )->fetchAll()[0]['count'];
+      $tourism_count = $db->query('SELECT num_of_posts AS count FROM tourism WHERE wilaya = ? ' , $city )->fetchAll()[0]['count'];
       $resto_count = $db->query('SELECT COUNT(*) AS count FROM resto WHERE city = ? ' , $city )->fetchAll()[0]['count'];
       $agency_count = $db->query('SELECT COUNT(*) AS count FROM agency WHERE city = ? ' , $city )->fetchAll()[0]['count'];
       $hotel_count = $db->query('SELECT COUNT(*) AS count FROM hotel WHERE city = ? ' , $city )->fetchAll()[0]['count'];
+
+      if (!isset($tourism_count)){
+        $tourism_count=0;
+      }
+      
 
       include("view/cityprofile.php");
 
@@ -80,7 +86,7 @@ switch($vars['action']){
 
     
                 $city=$_GET['city'];
-                $items = $db->query('SELECT r_name , r_bio , gallery_path FROM restaurants WHERE r_city= ?'  , $city )->fetchAll();
+                $items = $db->query('SELECT name , address ,  gallery_path FROM resto WHERE city= ?'  , $city )->fetchAll();
         
         
                 include("view/restaurants.php");

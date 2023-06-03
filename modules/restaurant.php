@@ -141,20 +141,6 @@ switch($vars['action']){
         }break;
     
 
-        
-    case "all-tourism":{
-
-
-
-    
-        $city='Algeria';
-
-
-        include("view/tourism.php");
-
-        exit;
-    
-        }break;
     
     
 

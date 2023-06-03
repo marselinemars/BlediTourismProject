@@ -87,6 +87,10 @@
           echo '<a href="index.php?action=my_profile&role='.$role.'" class="cityguides-register button">
           My profile
         </a>' ; 
+
+        echo '<a style="margin:auto 10px;" href="index.php?action=logout" class="cityguides-register button">
+          Logout
+        </a>' ; 
       } ?>
           </div>
           <div data-role="BurgerMenu" class="cityguides-burger-menu">
@@ -146,7 +150,7 @@
               <div class="cityguides-container05"></div>
               <div class="cityguides-container06">
                 <h1 class="cityguides-text01">
-                  Discover the restaurants of   
+                  Discover the restaurants of &nbsp;
                 </h1>
                 <h1 class="cityguides-text02"> <?php echo $city ;?></h1>
               </div>
@@ -157,6 +161,17 @@
 
 
         <?php
+
+                                        
+if (empty($items)) {
+  echo '<p id="no_resto" style="    overflow: hidden;
+  margin: 100px auto;
+  width: 50%;
+  text-align: center;
+}" class="guideprofie-text07 mycard"> Ooooops . This city has no restaurants subscribed yet ! </p> ';
+} else {
+
+
           for ($i=0;$i<count($items);$i++){
 
             $directory = "resto_galleries/".$items[$i]['gallery_path']."/0.jpg";
@@ -174,7 +189,7 @@
                 <div class="cityguides-container09">
                   <h1 class="cityguides-text03"><?php echo htmlspecialchars($items[$i]['name']);?></h1>
                   <span class="cityguides-text04">
-                  <?php echo htmlspecialchars($items[$i]['bio']);?>
+                  <?php echo htmlspecialchars($items[$i]['address']);?>
                   </span>
 
                   <span class="cityguides-text04">
@@ -191,12 +206,10 @@
 
 
          
-         <?php  }?>
+         <?php  } }?>
 
         
           
-          
-          <span class="cityguides-text11">see more -&gt;</span>
           <a href="index.php?action=find_city&city=<?php echo $city ;?>" class="cityguides-navlink10 button">
             back to city home
           </a>

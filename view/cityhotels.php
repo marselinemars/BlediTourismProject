@@ -74,6 +74,9 @@
           echo '<a href="index.php?action=my_profile&role='.$role.'" class="cityguides-register button">
           My profile
         </a>' ; 
+        echo '<a style="margin:auto 10px;" href="index.php?action=logout" class="cityguides-register button">
+       Lgout
+      </a>' ; 
       } ?>
           </div>
           <div data-role="BurgerMenu" class="cityguides-burger-menu">
@@ -133,9 +136,9 @@
               <div class="cityguides-container05"></div>
               <div class="cityguides-container06">
                 <h1 class="cityguides-text01">
-                  discover our hotels in :
+                  discover our hotels in &nbsp;
                 </h1>
-                <h1 class="cityguides-text02"><?php echo $city ;?></h1>
+                <h1 class="cityguides-text02"> <?php echo $city ;?></h1>
               </div>
             </div>
           </div>
@@ -144,6 +147,16 @@
 
 
         <?php
+
+                    
+if (empty($items)) {
+  echo '<p id="no_hotels" style="    overflow: hidden;
+  margin: 100px auto;
+  width: 50%;
+  text-align: center;
+}" class="guideprofie-text07 mycard"> Ooooops . This city has no hotels subscribed yet ! </p> ';
+} else {
+
           for ($i=0;$i<count($items);$i++){
 
             $directory = "hotels_galleries/".$items[$i]['gallery_path']."/0.jpg";
@@ -178,12 +191,10 @@
 
 
          
-         <?php  }?>
+         <?php } }?>
 
         
           
-          
-          <span class="cityguides-text11">see more -&gt;</span>
           <a href="index.php?action=find_city&city=<?php echo $city ;?>" class="cityguides-navlink10 button">
             back to city home
           </a>

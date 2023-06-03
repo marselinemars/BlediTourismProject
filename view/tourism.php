@@ -436,51 +436,70 @@ movingPhoto.addEventListener('mouseout', () => {
 
 </script>
 <?php
-   
-    $cities = array(
-    "Algiers",
-    "Oran",
-    "Constantine",
-    "Annaba",
-    "Blida",
-    "Batna",
-    "Djelfa",
-    "Sétif",
-    "Sidi bel",
-    "Biskra",
-    "Tébessa",
-    "Skikda",
-    "Tiaret",
-    "Béjaïa",
-    "Tlemcen",
-    "Béchar",
-    "Mostaganem",
-    "Bordj Bou",
-    "Chlef",
-    "Souk Ahras",
-    "El Eulma",
-    "Médéa",
-    "Tizi Ouzou",
-    "Jijel",
-    "Laghouat",
-    "El Oued",
-    "Ouargla",
-    "M'Sila",
-    "Relizane",
-    "Saïda",
-    "Bou Saâda",
-    "Guelma",
-    "Aïn Beïda",
-    "Maghnia",
-    "Mascara",
-    "Khenchela",
-    "Barika",
-    "Messaad",
-    "Aflou",
-    "Aïn Oussara"
+ 
+ $cities = array(
+  "Choose a city : ",
+  "Wilaya d'Adrar",
+  "Wilaya de Chlef",
+  "Wilaya de Laghouat",
+  "Wilaya d'Oum El Bouaghi",
+  "Wilaya de Batna",
+  "Wilaya de Béjaïa",
+  "Wilaya de Biskra",
+  "Wilaya de Béchar",
+  "Wilaya de Blida",
+  "Wilaya de Bouira",
+  "Wilaya de Tamanrasset",
+  "Wilaya de Tébessa",
+  "Wilaya de Tlemcen",
+  "Wilaya de Tiaret",
+  "Wilaya de Tizi Ouzou",
+  "Wilaya d'Alger",
+  "Wilaya de Djelfa",
+  "Wilaya de Jijel",
+  "Wilaya de Sétif",
+  "Wilaya de Saïda",
+  "Wilaya de Skikda",
+  "Wilaya de Sidi Bel Abbès",
+  "Wilaya d'Annaba",
+  "Wilaya de Guelma",
+  "Wilaya de Constantine",
+  "Wilaya de Médéa",
+  "Wilaya de Mostaganem",
+  "Wilaya de M'Sila",
+  "Wilaya de Mascara",
+  "Wilaya de Ouargla",
+  "Wilaya d'Oran",
+  "Wilaya d'El Bayadh",
+  "Wilaya d'Illizi",
+  "Wilaya de Bordj Bou Arreridj",
+  "Wilaya de Boumerdès",
+  "Wilaya d'El Tarf",
+  "Wilaya de Tindouf",
+  "Wilaya de Tissemsilt",
+  "Wilaya d'El Oued",
+  "Wilaya de Khenchela",
+  "Wilaya de Souk Ahras",
+  "Wilaya de Tipaza",
+  "Wilaya de Mila",
+  "Wilaya d'Aïn Defla",
+  "Wilaya de Naâma",
+  "Wilaya d'Aïn Témouchent",
+  "Wilaya de Ghardaïa",
+  "Wilaya de Relizane",
+  "Wilaya de Timimoun",
+  "Wilaya de Bordj Badji Mokhtar",
+  "Wilaya d'Ouled Djellal",
+  "Wilaya de Béni Abbès",
+  "Wilaya d'In Salah",
+  "Wilaya d'In Guezzam",
+  "Wilaya de Touggourt",
+  "Wilaya de Djanet",
+  "Wilaya d'El M'Ghair",
+  "Wilaya d'El Meniaa"
 );
-?>
 
+?>
 
 
   </head>
@@ -512,7 +531,18 @@ movingPhoto.addEventListener('mouseout', () => {
             </nav>
           </div>
           <div class="cityguides-btn-group">
-            <a href="signup.html" class="cityguides-register button"> My profile </a>
+           
+           
+          <?php if ($role !="visitor"){
+          
+          echo '<a href="index.php?action=my_profile&role='.$role.'" class="cityguides-register button">
+          My profile
+        </a>' ; 
+        echo '<a style="margin:auto 10px;" href="index.php?action=logout" class="cityguides-register button">
+        Logout
+      </a>' ; 
+      } ?>
+
           </div>
           <div data-role="BurgerMenu" class="cityguides-burger-menu">
             <svg viewBox="0 0 1024 1024" class="cityguides-icon02">
@@ -603,14 +633,13 @@ movingPhoto.addEventListener('mouseout', () => {
                           Let the warmth of the Algerian people embrace you as 
                           you embark on a journey filled with adventure and beauty.</p>
                   </div>
-                  <div class="img">
-                    <img src="algiers-city.jpg"  alt="algiers city" class="ig">
-                  </div>
+                  
                   
                  
                   </div>
-                  <div class="explore"><h2>Explore <span style="color:#39707b">Algeria</span>'s Places</h2></div>
-                 
+
+                  <div style = "margin:20px auto 50px ;" class="explore"><h2>Explore <span style="color:#39707b">Algeria</span>'s Places</h2></div>
+                  
                  
                 <div id="form-dialog" class="form-container" style="display:none; ">
                 
@@ -659,7 +688,7 @@ movingPhoto.addEventListener('mouseout', () => {
                
         $images=tourism_get_gallery($items[$i]['wilaya']);
         $info=tourism_get_info($items[$i]['wilaya']);
-
+       
         
 
 $combined_array = array_combine($images, $info);
@@ -681,10 +710,11 @@ foreach ($combined_array as $image => $aninfo){
   </div>
   <div class="place-details">
     <h3 class="place-title">'.$title.'</h3>
+    <p class="place-description">'.$items[$i]['wilaya'].'</p>
     <p class="place-activities">
       Activities:
       ';
-      for($i=0;$i<count($act);$i++)
+      for($j=0;$j<count($act);$j++)
       {
       echo '
       <span class="activity">'.$act[$i].'</span>';
@@ -692,12 +722,13 @@ foreach ($combined_array as $image => $aninfo){
       echo '
     </p>
       
-     
+   
     <p class="place-description">'.$description.'</p>
     <p class="place-open-time">Open Time: '.$time.'</p>
   </div>
 </div>';
 }
+
               }
 ?>
           
@@ -726,10 +757,19 @@ foreach ($combined_array as $image => $aninfo){
 
 
 
-            <button id="show-form-btn"onclick="show_form(event)" style="display: block; width: 100%; margin: 10px; color: #fff; background-color: #39707b; border: none; border-radius: 5px; padding: 10px; font-size: 18px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">
+            <button class = "cityguides-navlink10 button" id="show-form-btn"onclick="show_form(event)" style="display: block;
+             width: 50%;
+              margin: 50px auto; 
+              color: #fff;
+               background-color: #39707b;
+                border: none; border-radius: 5px;
+                 padding: 10px; font-size: 18px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">
+             
     <span class="guideprofie-text18">Add Place</span>
 </button>
-
+<a href="index.php?action=find_city&city=<?php echo $city ;?>" style="margin:20px;" class="cityguides-navlink10 button">
+            back to city home
+          </a>
 
 
         <footer class="cityguides-footer">
@@ -746,14 +786,14 @@ foreach ($combined_array as $image => $aninfo){
               <path
                 d="M925.714 233.143c-25.143 36.571-56.571 69.143-92.571 95.429 0.571 8 0.571 16 0.571 24 0 244-185.714 525.143-525.143 525.143-104.571 0-201.714-30.286-283.429-82.857 14.857 1.714 29.143 2.286 44.571 2.286 86.286 0 165.714-29.143 229.143-78.857-81.143-1.714-149.143-54.857-172.571-128 11.429 1.714 22.857 2.857 34.857 2.857 16.571 0 33.143-2.286 48.571-6.286-84.571-17.143-148-91.429-148-181.143v-2.286c24.571 13.714 53.143 22.286 83.429 23.429-49.714-33.143-82.286-89.714-82.286-153.714 0-34.286 9.143-65.714 25.143-93.143 90.857 112 227.429 185.143 380.571 193.143-2.857-13.714-4.571-28-4.571-42.286 0-101.714 82.286-184.571 184.571-184.571 53.143 0 101.143 22.286 134.857 58.286 41.714-8 81.714-23.429 117.143-44.571-13.714 42.857-42.857 78.857-81.143 101.714 37.143-4 73.143-14.286 106.286-28.571z"
               ></path></svg>
-            ><svg
+            <svg
               viewBox="0 0 877.7142857142857 1024"
               class="cityguides-icon16"
             >
               <path
                 d="M585.143 512c0-80.571-65.714-146.286-146.286-146.286s-146.286 65.714-146.286 146.286 65.714 146.286 146.286 146.286 146.286-65.714 146.286-146.286zM664 512c0 124.571-100.571 225.143-225.143 225.143s-225.143-100.571-225.143-225.143 100.571-225.143 225.143-225.143 225.143 100.571 225.143 225.143zM725.714 277.714c0 29.143-23.429 52.571-52.571 52.571s-52.571-23.429-52.571-52.571 23.429-52.571 52.571-52.571 52.571 23.429 52.571 52.571zM438.857 152c-64 0-201.143-5.143-258.857 17.714-20 8-34.857 17.714-50.286 33.143s-25.143 30.286-33.143 50.286c-22.857 57.714-17.714 194.857-17.714 258.857s-5.143 201.143 17.714 258.857c8 20 17.714 34.857 33.143 50.286s30.286 25.143 50.286 33.143c57.714 22.857 194.857 17.714 258.857 17.714s201.143 5.143 258.857-17.714c20-8 34.857-17.714 50.286-33.143s25.143-30.286 33.143-50.286c22.857-57.714 17.714-194.857 17.714-258.857s5.143-201.143-17.714-258.857c-8-20-17.714-34.857-33.143-50.286s-30.286-25.143-50.286-33.143c-57.714-22.857-194.857-17.714-258.857-17.714zM877.714 512c0 60.571 0.571 120.571-2.857 181.143-3.429 70.286-19.429 132.571-70.857 184s-113.714 67.429-184 70.857c-60.571 3.429-120.571 2.857-181.143 2.857s-120.571 0.571-181.143-2.857c-70.286-3.429-132.571-19.429-184-70.857s-67.429-113.714-70.857-184c-3.429-60.571-2.857-120.571-2.857-181.143s-0.571-120.571 2.857-181.143c3.429-70.286 19.429-132.571 70.857-184s113.714-67.429 184-70.857c60.571-3.429 120.571-2.857 181.143-2.857s120.571-0.571 181.143 2.857c70.286 3.429 132.571 19.429 184 70.857s67.429 113.714 70.857 184c3.429 60.571 2.857 120.571 2.857 181.143z"
               ></path></svg>
-            ><svg
+            <svg
               viewBox="0 0 602.2582857142856 1024"
               class="cityguides-icon18"
             >

@@ -1,47 +1,68 @@
 
 <?php
-$cities = array(
-    "Algiers",
-    "Oran",
-    "Constantine",
-    "Annaba",
-    "Blida",
-    "Batna",
-    "Djelfa",
-    "Sétif",
-    "Sidi bel",
-    "Biskra",
-    "Tébessa",
-    "Skikda",
-    "Tiaret",
-    "Béjaïa",
-    "Tlemcen",
-    "Béchar",
-    "Mostaganem",
-    "Bordj Bou",
-    "Chlef",
-    "Souk Ahras",
-    "El Eulma",
-    "Médéa",
-    "Tizi Ouzou",
-    "Jijel",
-    "Laghouat",
-    "El Oued",
-    "Ouargla",
-    "M'Sila",
-    "Relizane",
-    "Saïda",
-    "Bou Saâda",
-    "Guelma",
-    "Aïn Beïda",
-    "Maghnia",
-    "Mascara",
-    "Khenchela",
-    "Barika",
-    "Messaad",
-    "Aflou",
-    "Aïn Oussara"
+ 
+ $cities = array(
+  "Choose a city : ",
+  "Wilaya d'Adrar",
+  "Wilaya de Chlef",
+  "Wilaya de Laghouat",
+  "Wilaya d'Oum El Bouaghi",
+  "Wilaya de Batna",
+  "Wilaya de Béjaïa",
+  "Wilaya de Biskra",
+  "Wilaya de Béchar",
+  "Wilaya de Blida",
+  "Wilaya de Bouira",
+  "Wilaya de Tamanrasset",
+  "Wilaya de Tébessa",
+  "Wilaya de Tlemcen",
+  "Wilaya de Tiaret",
+  "Wilaya de Tizi Ouzou",
+  "Wilaya d'Alger",
+  "Wilaya de Djelfa",
+  "Wilaya de Jijel",
+  "Wilaya de Sétif",
+  "Wilaya de Saïda",
+  "Wilaya de Skikda",
+  "Wilaya de Sidi Bel Abbès",
+  "Wilaya d'Annaba",
+  "Wilaya de Guelma",
+  "Wilaya de Constantine",
+  "Wilaya de Médéa",
+  "Wilaya de Mostaganem",
+  "Wilaya de M'Sila",
+  "Wilaya de Mascara",
+  "Wilaya de Ouargla",
+  "Wilaya d'Oran",
+  "Wilaya d'El Bayadh",
+  "Wilaya d'Illizi",
+  "Wilaya de Bordj Bou Arreridj",
+  "Wilaya de Boumerdès",
+  "Wilaya d'El Tarf",
+  "Wilaya de Tindouf",
+  "Wilaya de Tissemsilt",
+  "Wilaya d'El Oued",
+  "Wilaya de Khenchela",
+  "Wilaya de Souk Ahras",
+  "Wilaya de Tipaza",
+  "Wilaya de Mila",
+  "Wilaya d'Aïn Defla",
+  "Wilaya de Naâma",
+  "Wilaya d'Aïn Témouchent",
+  "Wilaya de Ghardaïa",
+  "Wilaya de Relizane",
+  "Wilaya de Timimoun",
+  "Wilaya de Bordj Badji Mokhtar",
+  "Wilaya d'Ouled Djellal",
+  "Wilaya de Béni Abbès",
+  "Wilaya d'In Salah",
+  "Wilaya d'In Guezzam",
+  "Wilaya de Touggourt",
+  "Wilaya de Djanet",
+  "Wilaya d'El M'Ghair",
+  "Wilaya d'El Meniaa"
 );
+
 ?>
 
 
@@ -133,6 +154,7 @@ $cities = array(
 
                  echo '<a href="index.php?action=my_profile&role='.$role.'" class="homepage-login button">My profile </a>';
 
+                 echo '<a style="margin:auto 10px;" href="index.php?action=logout" class="homepage-login button">Logout </a>';
                 }
               
 
@@ -219,7 +241,8 @@ $cities = array(
     border-radius: 50px;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-" name="city">
+" name="city" onchange="submitForm()">
+
 
 
     <?php foreach ($cities as $city) { ?>
@@ -230,10 +253,6 @@ $cities = array(
 </form>
 
 </div>
-
-<button id="mySubmitButton" style="width:20%;height:50px;border-radius:100px;margin-top : 30px; background-color: #39707B; cursor:pointer;" type="button"  <?php echo $disabledAttr; ?>><span class="homepage-text02">Search</span></button>
-
-
 
           </div>
           <div id="signup_login" class="homepage-banner">
@@ -292,7 +311,7 @@ $cities = array(
                     explore this mesmerizing destination!
                   </span>
                 </div>
-                <a id = "tamanrasset" href="index.php?action=city_profile&city=tamanrasset" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
+                <a id = "tamanrasset" href="index.php?action=city_profile&city=Wilaya de Tamanrasset" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
                   explore more
                 </a>
               </div>
@@ -311,7 +330,7 @@ $cities = array(
                     best of Bejaia with our e-tourism website.
                   </span>
                 </div>
-                <a id="bejaia"  href="index.php?action=city_profile&city=bejaia" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
+                <a id="bejaia"  href="index.php?action=city_profile&city=Wilaya de Béjaïa" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
                   explore more
                 </a>
               </div>
@@ -331,7 +350,7 @@ $cities = array(
                     e-tourism website.
                   </span>
                 </div>
-                <a id="tizi" href="index.php?action=city_profile&city=tizi-ouzou" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
+                <a id="tizi" href="index.php?action=city_profile&city=Wilaya de Tizi Ouzou" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
                   explore more
                 </a>
               </div>
@@ -350,7 +369,7 @@ $cities = array(
                     beauty of this North African gem.
                   </span>
                 </div>
-                <a id="algiers" href="index.php?action=city_profile&city=algiers" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
+                <a id="algiers" href="index.php?action=city_profile&city=Wilaya d'Alger" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
                   explore more
                 </a>
               </div>
@@ -369,7 +388,7 @@ $cities = array(
                     unforgettable travel experience
                   </span>
                 </div>
-                <a id="annaba" href="index.php?action=city_profile&city=annaba" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
+                <a id="annaba" href="index.php?action=city_profile&city=Wilaya d'Annaba" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
                   explore more
                 </a>
               </div>
@@ -388,7 +407,7 @@ $cities = array(
                     travel experience.&nbsp; &nbsp;
                   </span>
                 </div>
-                <a id="oran" href="index.php?action=city_profile&city=oran" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
+                <a id="oran" href="index.php?action=city_profile&city=Wilaya d'Oran" class="homepage-navlink08 button" <?php echo $disabledAttr; ?>>
                   explore more
                 </a>
               </div>
@@ -549,16 +568,6 @@ $cities = array(
 
 
 
-<script>
-      var submitButton = document.getElementById("mySubmitButton");
-      var form = document.getElementById("myForm");
-
-      submitButton.addEventListener("click", function() {
-        form.submit();
-      });
-</script>
-
-
 
 <script>
 
@@ -691,6 +700,20 @@ scrollBtn16.addEventListener("click", function() {
 
 
     </script>
+
+
+    
+
+
+
+    <script>
+  function submitForm() {
+    var form = document.getElementById("myForm");
+    form.submit();
+  }
+</script>
+
+
   
 
 

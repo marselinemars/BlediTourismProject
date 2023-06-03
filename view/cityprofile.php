@@ -81,6 +81,9 @@
           echo '<a href="index.php?action=my_profile&role='.$role.'" class="guideprofie-register button">
           My profile
         </a>' ; 
+        echo '<a style="margin:auto 10px;" href="index.php?action=logout" class="guideprofie-register button">
+          Logout
+        </a>' ; 
       } ?>
           </div>
           <div data-role="BurgerMenu" class="cityprofile-burger-menu">
@@ -400,10 +403,10 @@
             </div>
           </div>
           <div class="cityprofile-container19">
-            <a href="linkagepage.html" class="cityprofile-navlink11 button">
+            <a href="#" class="cityprofile-navlink11 button" disabled>
               see more
             </a>
-            <a href="linkagepage.html" class="cityprofile-navlink12 button">
+            <a href="#" class="cityprofile-navlink12 button" disabled >
               add your feedback
             </a>
           </div>

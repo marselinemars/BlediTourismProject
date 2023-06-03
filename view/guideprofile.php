@@ -469,6 +469,12 @@ contactDialog.style.display = "block";
             echo '<a href="index.php?action=my_profile&role='.$role.'" class="guideprofie-register button">
             My profile
           </a>' ; 
+
+          echo '<a style="margin:auto 10px;"href="index.php?action=logout" class="guideprofie-register button">
+            Logout
+          </a>' ; 
+          
+
         } ?>
             </div>
             <div data-role="BurgerMenu" class="guideprofie-burger-menu">
@@ -585,7 +591,7 @@ contactDialog.style.display = "block";
           </div>
 
 
-          <div   id="tab1" class="guideprofie-gallery tab-content active mycard_container">
+          <div   id="tab1"   style = "width:100%;"class="guideprofie-gallery tab-content active mycard_container">
 
           
           <?php
@@ -593,7 +599,7 @@ contactDialog.style.display = "block";
             $combined_array = array_combine($images, $info);
 
             if (empty($combined_array)) {
-              echo '<p id="no_posts" style="overflow:hidden;" class="guideprofie-text07 mycard"> Ooooops . This guide has no posts yet ! </p> ';
+              echo '<p id="no_posts" style="overflow:hidden;margin:auto;" class="guideprofie-text07 mycard"> Ooooops . This guide has no posts yet ! </p> ';
             } else {
 
               foreach ($combined_array as $image => $aninfo){
@@ -660,7 +666,7 @@ contactDialog.style.display = "block";
 
 
 
-          <div id="tab2" class="guideprofie-gallery tab-content mycircuit_container ">
+          <div id="tab2"  style = "width:100%;" class="guideprofie-gallery tab-content mycircuit_container ">
 
         
          <div id="tab2.1" class="circuits-container">
@@ -669,7 +675,7 @@ contactDialog.style.display = "block";
 
                 
         if (empty($circuits)) {
-          echo '<p id="no_circuits" style="overflow:hidden;" class="guideprofie-text07 mycard"> Ooooops . This guide has no circuits yet ! </p> ';
+          echo '<p id="no_circuits" style="overflow:hidden;margin:auto;" class="guideprofie-text07 mycard"> Ooooops . This guide has no circuits yet ! </p> ';
         } else {
 
           for ($i=0;$i<count($circuits);$i++){
@@ -727,11 +733,11 @@ echo '<button  style="display:block; width:100%;margin-top:60px;" id="show-form-
 
 
 
-          <div id="tab3" class="guideprofie-gallery tab-content myfeedback_container">
+          <div id="tab3"  style = "width:100%;"class="guideprofie-gallery tab-content myfeedback_container">
           <div id="tab3.1" class="feedback-container">
           <?php
           if (empty($feedbacks)) {
-            echo '<p id="no_feedbacks" style="overflow:hidden;" class="guideprofie-text07 mycard"> Ooooops . This guide has no feedbacks yet ! </p> ';
+            echo '<p id="no_feedbacks" style="overflow:hidden;margin:auto;" class="guideprofie-text07 mycard"> Ooooops . This guide has no feedbacks yet ! </p> ';
           } else {
   
           for ($i=0;$i<count($feedbacks);$i++){

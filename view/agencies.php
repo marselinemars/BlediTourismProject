@@ -90,6 +90,7 @@
             
             echo ' <a href="index.php?action=my_profile&role='.$role.'" class="cityguides-register button"> My profile </a>';
 
+            echo ' <a style="margin:auto 10px;" href="index.php?action=logout" class="cityguides-register button"> Logout </a>';
             }
 
             ?>
@@ -162,6 +163,16 @@
 
 
         <?php
+
+                                        
+if (empty($items)) {
+  echo '<p id="no_tourism" style="    overflow: hidden;
+  margin: 100px auto;
+  width: 50%;
+  text-align: center;
+}" class="guideprofie-text07 mycard"> Ooooops . This city has no touristic agencies subscribed yet !  </p> ';
+} else {
+
           for ($i=0;$i<count($items);$i++){
 
             $directory = "agency_galleries/".$items[$i]['gallery_path']."/0.jpg";
@@ -196,15 +207,20 @@
 
 
          
-         <?php  }?>
+         <?php  } }?>
 
         
           
-          
-          <span class="cityguides-text11">see more -&gt;</span>
-          <a href="index.php?action=find_city&city=<?php echo $city ;?>" class="cityguides-navlink10 button">
+         
+          <?php if ($city!="Algeria"){ 
+
+         echo'  <a href="index.php?action=find_city&city='.$city.'" class="cityguides-navlink10 button">
             back to city home
-          </a>
+          </a>';
+
+           } ?> 
+
+
         </div>
         <footer class="cityguides-footer">
           <svg viewBox="0 0 1024 1024" class="cityguides-icon12">

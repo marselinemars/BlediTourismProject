@@ -73,7 +73,8 @@
 
  
             echo ' <a href="index.php?action=my_profile&role='.$role.'" class="cityguides-register button"> My profile </a>';
-            
+            echo ' <a style="margin:auto 10px;"href="index.php?action=logout" class="cityguides-register button"> Logout </a>';
+
             }
            
             ?>
@@ -146,7 +147,18 @@
         <div class="cityguides-blog">
 
 
+       
         <?php
+
+                  
+        if (empty($items)) {
+          echo '<p id="no_guides" style="    overflow: hidden;
+          margin: 100px auto;
+          width: 50%;
+          text-align: center;
+      }" class="guideprofie-text07 mycard"> Ooooops . This city has no guides subscribed yet ! </p> ';
+        } else {
+
           for ($i=0;$i<count($items);$i++){
 
             $directory = "guides_galleries/".$items[$i]['gallery_path']."/0.jpg";
@@ -181,12 +193,11 @@
 
 
          
-         <?php  }?>
+         <?php  } }?>
 
         
           
           
-          <span class="cityguides-text11">see more -&gt;</span>
           <a href="index.php?action=find_city&city=<?php echo $city ;?>" class="cityguides-navlink10 button">
             back to city home
           </a>

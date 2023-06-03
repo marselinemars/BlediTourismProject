@@ -384,49 +384,69 @@ color: #39707b;
     }
     </script>
     <?php
-   
-   $cities = array(
-   "Algiers",
-   "Oran",
-   "Constantine",
-   "Annaba",
-   "Blida",
-   "Batna",
-   "Djelfa",
-   "Sétif",
-   "Sidi bel",
-   "Biskra",
-   "Tébessa",
-   "Skikda",
-   "Tiaret",
-   "Béjaïa",
-   "Tlemcen",
-   "Béchar",
-   "Mostaganem",
-   "Bordj Bou",
-   "Chlef",
-   "Souk Ahras",
-   "El Eulma",
-   "Médéa",
-   "Tizi Ouzou",
-   "Jijel",
-   "Laghouat",
-   "El Oued",
-   "Ouargla",
-   "M'Sila",
-   "Relizane",
-   "Saïda",
-   "Bou Saâda",
-   "Guelma",
-   "Aïn Beïda",
-   "Maghnia",
-   "Mascara",
-   "Khenchela",
-   "Barika",
-   "Messaad",
-   "Aflou",
-   "Aïn Oussara"
+ 
+ $cities = array(
+  "Choose a city : ",
+  "Wilaya d'Adrar",
+  "Wilaya de Chlef",
+  "Wilaya de Laghouat",
+  "Wilaya d'Oum El Bouaghi",
+  "Wilaya de Batna",
+  "Wilaya de Béjaïa",
+  "Wilaya de Biskra",
+  "Wilaya de Béchar",
+  "Wilaya de Blida",
+  "Wilaya de Bouira",
+  "Wilaya de Tamanrasset",
+  "Wilaya de Tébessa",
+  "Wilaya de Tlemcen",
+  "Wilaya de Tiaret",
+  "Wilaya de Tizi Ouzou",
+  "Wilaya d'Alger",
+  "Wilaya de Djelfa",
+  "Wilaya de Jijel",
+  "Wilaya de Sétif",
+  "Wilaya de Saïda",
+  "Wilaya de Skikda",
+  "Wilaya de Sidi Bel Abbès",
+  "Wilaya d'Annaba",
+  "Wilaya de Guelma",
+  "Wilaya de Constantine",
+  "Wilaya de Médéa",
+  "Wilaya de Mostaganem",
+  "Wilaya de M'Sila",
+  "Wilaya de Mascara",
+  "Wilaya de Ouargla",
+  "Wilaya d'Oran",
+  "Wilaya d'El Bayadh",
+  "Wilaya d'Illizi",
+  "Wilaya de Bordj Bou Arreridj",
+  "Wilaya de Boumerdès",
+  "Wilaya d'El Tarf",
+  "Wilaya de Tindouf",
+  "Wilaya de Tissemsilt",
+  "Wilaya d'El Oued",
+  "Wilaya de Khenchela",
+  "Wilaya de Souk Ahras",
+  "Wilaya de Tipaza",
+  "Wilaya de Mila",
+  "Wilaya d'Aïn Defla",
+  "Wilaya de Naâma",
+  "Wilaya d'Aïn Témouchent",
+  "Wilaya de Ghardaïa",
+  "Wilaya de Relizane",
+  "Wilaya de Timimoun",
+  "Wilaya de Bordj Badji Mokhtar",
+  "Wilaya d'Ouled Djellal",
+  "Wilaya de Béni Abbès",
+  "Wilaya d'In Salah",
+  "Wilaya d'In Guezzam",
+  "Wilaya de Touggourt",
+  "Wilaya de Djanet",
+  "Wilaya d'El M'Ghair",
+  "Wilaya d'El Meniaa"
 );
+
 ?>
 
 
@@ -459,7 +479,18 @@ color: #39707b;
             </nav>
           </div>
           <div class="cityguides-btn-group">
-            <a href="signup.html" class="cityguides-register button"> My profile </a>
+          
+           
+          <?php if ($role !="visitor"){
+          
+          echo '<a href="index.php?action=my_profile&role='.$role.'" class="cityguides-register button">
+          My profile
+        </a>' ; 
+        echo '<a style="margin:auto 10px;" href="index.php?action=logout" class="cityguides-register button">
+        Logout
+      </a>' ; 
+      } ?>
+
           </div>
           <div data-role="BurgerMenu" class="cityguides-burger-menu">
             <svg viewBox="0 0 1024 1024" class="cityguides-icon02">
@@ -537,32 +568,12 @@ color: #39707b;
             <div style="width:100%;" class="homepage-container">
               <div class="homepage-container01">
 
-                    <div class="container" >
-                  <div class="Alger"><h2 class="welcome" >Welcome To <br><span class="color">Algeria</span></h2>
-                  <p class="Alger_p"> Discover the allure of Algeria, a land where ancient history and breathtaking landscapes intertwine. Lose yourself in the Sahara Desert's golden sands,
-                     as the sun casts a mesmerizing glow on the vast dunes.
-                      Immerse yourself in the vibrant streets of Algiers,
-                       where ancient traditions harmonize with modern life. 
-                       Taste the tantalizing flavors of Algerian cuisine,
-                        a delightful fusion of Mediterranean and Arabic influences.
-                         From the majestic Atlas Mountains to the picturesque Mediterranean coastline,
-                          Algeria offers a world of natural wonders waiting to be explored. 
-                          Let the warmth of the Algerian people embrace you as 
-                          you embark on a journey filled with adventure and beauty.</p>
-                  </div>
-                  <div class="img">
-                    <img src="algiers-city.jpg"  alt="algiers city" class="ig">
-                  </div>
-                  
-                 
-                  </div>
-                  <div class="explore"><h2>Explore <span class="color">Algeria</span>'s Places</h2></div>
-                  
+               
                 
                   <div id="form-dialog" class="form-container" style="display:none; ">
                 
                 <span  class="close-icon">&times;</span>
-               <form id="newpost_form" action="index.php?action=tourism_add_to_gallery"  enctype="multipart/form-data"  method="post">
+               <form id="newpost_form" action="index.php?action=tourism_add_to_gallery2&city=city"  enctype="multipart/form-data"  method="post">
                <input type="file" name="newpost" id="file-input">
        
                <label for="" style="color:white;">The title : </label>
@@ -571,12 +582,13 @@ color: #39707b;
                <select   name="city">
 
 
-    <?php foreach ($cities as $city) { ?>
+    
         <option style="padding : 5px ; " value="<?php echo $city; ?>"><?php echo $city; ?></option>
-    <?php } ?>
+  
   </select>  
 
-									
+               <label for="" style="color:white;" >Activities : </label>
+               <input type="text" name="activity" id="" placeholder="write the activities in this place ">
                <label for="" style="color:white;" >The open time : </label>
                <input type="text" name="time" id="" placeholder="write the open time here ">
                <label for="" style="color:white;">The description : </label>
@@ -600,6 +612,14 @@ color: #39707b;
               </div>
               <?php
               
+                                 
+if (empty($items)) {
+  echo '<p id="no_tourism" style="    overflow: hidden;
+  margin: 100px auto;
+  width: 50%;
+  text-align: center;
+}" class="guideprofie-text07 mycard"> Ooooops . This city has no touristic places addedt yet ! You can contribute by adding your favorite place in this city *-* </p> ';
+} else {
               
 
 
@@ -639,7 +659,7 @@ foreach ($combined_array as $image => $aninfo){
   </div>
 </div>';
 
-              }
+} }
 ?>
           
                 
@@ -668,7 +688,13 @@ foreach ($combined_array as $image => $aninfo){
 
 
 
-            <button id="show-form-btn"onclick="show_form(event)" style="display: block; width: 100%; margin: 10px; color: #fff; background-color: #39707b; border: none; border-radius: 5px; padding: 10px; font-size: 18px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">
+            <button id="show-form-btn"onclick="show_form(event)" style="display: block;
+             width: 50%;
+              margin: 50px auto; 
+              color: #fff;
+               background-color: #39707b;
+                border: none; border-radius: 5px;
+                 padding: 10px; font-size: 18px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">
     <span class="guideprofie-text18">Add Place</span>
 </button> 
 

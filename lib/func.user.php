@@ -7,8 +7,54 @@ function user_get_logged_user(){
     global $db,$appuser;
     
     $appuser=0;
-    if (isset($_COOKIE['app_email']) and strlen($_COOKIE['app_email'])>0){		
-		$items = $db->query("SELECT * FROM users WHERE LOWER(email) = ? and pass= ?",$_COOKIE['app_email'], $_COOKIE['app_pass'])->fetchAll();
+    if (isset($_COOKIE['app_email']) and strlen($_COOKIE['app_email'])>0){
+		
+		switch($_COOKIE['user']){
+
+    
+
+   
+			case "visitor":{
+		
+				$items = $db->query("SELECT * FROM visitor WHERE LOWER(email) = ? ",$_COOKIE['app_email'])->fetchAll();
+				
+				}break;
+	
+	
+				case "guide":{
+		
+				$items = $db->query("SELECT * FROM guides WHERE LOWER(email) = ? ",$_COOKIE['app_email'])->fetchAll();
+			
+			
+				}break;
+	
+	
+				case "hotel":{
+		
+					//search for it in the database ?
+				$items = $db->query("SELECT * FROM hotel WHERE LOWER(email) = ? ",$_COOKIE['app_email'])->fetchAll();
+				
+				}break;
+	
+				
+				case "resto":{
+				
+				$items = $db->query('SELECT * FROM resto WHERE LOWER(email) = ?' ,$_COOKIE['app_email'])->fetchAll();
+	
+				}break;
+	
+	
+				case "agency":{
+		
+				$items = $db->query("SELECT * FROM agency WHERE LOWER(email) = ? ",$_COOKIE['app_email'])->fetchAll();
+				
+				}break;
+	
+	
+	
+		}
+
+
 		if (count($items)>0){
 			$appuser=$items[0];	
 		}
