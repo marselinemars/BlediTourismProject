@@ -8,16 +8,56 @@ switch($vars['action']){
 
     case "tourism_add_to_gallery":{
 
-       
+        
         $ret = tourism_add_image_to_gallery();
-       
+        
+        
         tourism_add_info_to_gallery();
         
         $db->query('UPDATE tourism SET num_of_posts=num_of_posts+1 WHERE wilaya=?  ' , $_POST['city'] );
-        echo"ahla";
+        
         
         
         header("location: index.php?action=all-tourism");
+
+        exit;
+    }break;
+    case "tourism_add_to_gallery2":{
+     
+       
+        
+        $image= tourism_add_image_to_gallery();
+       
+        $info=tourism_add_info_to_gallery();
+        
+        $db->query('UPDATE tourism SET num_of_posts=num_of_posts+1 WHERE wilaya=?  ' , $_POST['city'] );
+        
+        $response = array(
+            $info,$image,
+            'html' => '<div class="place-card">
+            <div class="place-photo">
+              <img src='.$image.' alt="annaba my love">
+            </div>
+            <div class="place-details">
+              <h3 class="place-title">'.$info['city'].' : '.$info['title'].'</h3>
+             
+        <p class="place-description">'.$info['description'].'</p>
+              <p class="place-open-time">Open Time: '.$info['time'].'</p>
+            </div>
+            <button class="show-location-button" onclick="showLocation(\''.$info['latitude'].'\', \''.$info['longitude'].'\')">Show Location</button>
+
+          </div>',
+        );
+      // Prepare the JSON response
+      $jsonResponse = json_encode($response);
+
+      // Set the response headers
+      header('Content-Type: application/json');
+      header('Access-Control-Allow-Origin: *'); // Adjust the allowed origins as needed
+
+      // Send the JSON response
+      echo $jsonResponse;
+
 
         exit;
     }break;

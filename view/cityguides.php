@@ -149,14 +149,26 @@
 
        
         <?php
-
-                  
-        if (empty($items)) {
-          echo '<p id="no_guides" style="    overflow: hidden;
-          margin: 100px auto;
-          width: 50%;
-          text-align: center;
-      }" class="guideprofie-text07 mycard"> Ooooops . This city has no guides subscribed yet ! </p> ';
+                                       
+                                       if (empty($items)) {
+                                        if ($city=="Algeria"){
+                                      
+                                          echo '<p id="no_tourism" style="    overflow: hidden;
+                                          margin: 100px auto;
+                                          width: 50%;
+                                          text-align: center;
+                                        }" class="guideprofie-text07 mycard"> Ooooops . There is no touristic huides subscribed yet !  </p> ';
+                                      
+                                        }
+                                        else{
+                                      
+                                          echo '<p id="no_tourism" style="    overflow: hidden;
+                                          margin: 100px auto;
+                                          width: 50%;
+                                          text-align: center;
+                                        }" class="guideprofie-text07 mycard"> Ooooops . This city has no touristic guides subscribed yet !  </p> ';
+                                      
+                                        }
         } else {
 
           for ($i=0;$i<count($items);$i++){

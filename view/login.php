@@ -139,7 +139,7 @@
                     <span class="login-text2">enter your password</span>
                   </div>
                   <input
-                    type="text"
+                    type="password"
                     placeholder="exp : ************"
                     class="login-textinput1 input"
                     name="password"

@@ -554,13 +554,13 @@ contactDialog.style.display = "block";
 
 
                 $name=$items[0]['name'];
-                $bio=$items[0]['bio'];
+                $address=$items[0]['address'];
                 $contacts=$items[0]['contacts'];
                 echo'
                 <div class="guideprofie-container06 ">
                   <h1 class="guideprofie-text">'.$name.'</h1>
-                  <span class="guideprofie-text01">
-                  '.$bio.'
+                  <span class="guideprofie-text01">Address: 
+                  '.$address.'
                   </span>
                  
                 </div>

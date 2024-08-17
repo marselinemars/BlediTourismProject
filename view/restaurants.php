@@ -161,14 +161,26 @@
 
 
         <?php
-
-                                        
-if (empty($items)) {
-  echo '<p id="no_resto" style="    overflow: hidden;
-  margin: 100px auto;
-  width: 50%;
-  text-align: center;
-}" class="guideprofie-text07 mycard"> Ooooops . This city has no restaurants subscribed yet ! </p> ';
+                                       
+                                       if (empty($items)) {
+                                        if ($city=="Algeria"){
+                                      
+                                          echo '<p id="no_tourism" style="    overflow: hidden;
+                                          margin: 100px auto;
+                                          width: 50%;
+                                          text-align: center;
+                                        }" class="guideprofie-text07 mycard"> Ooooops . There is no restaurants subscribed yet !  </p> ';
+                                      
+                                        }
+                                        else{
+                                      
+                                          echo '<p id="no_tourism" style="    overflow: hidden;
+                                          margin: 100px auto;
+                                          width: 50%;
+                                          text-align: center;
+                                        }" class="guideprofie-text07 mycard"> Ooooops . This city has no restaurants subscribed yet !  </p> ';
+                                      
+                                        }
 } else {
 
 

@@ -47,7 +47,7 @@ switch($vars['action']){
 
    case "agency_profile":{
 
-    
+    $name = "" ;
     if (isset($_GET['mine'])){
       $mine=false;
     }else{
@@ -156,21 +156,7 @@ switch($vars['action']){
     }break;
     
 
-    case "all-guides":{
-
-
-
     
-        $city='Algeria';
-        $items = $db->query('SELECT g_name , g_bio , gallery_path , g_city FROM guides ' )->fetchAll();
-
-
-        include("view/cityguides.php");
-
-        exit;
-    
-        }break;
-
         case "all-agencies":{
 
 

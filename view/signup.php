@@ -1,3 +1,70 @@
+<?php
+ 
+ $cities = array(
+  "Choose a city : ",
+  "Wilaya d'Adrar",
+  "Wilaya de Chlef",
+  "Wilaya de Laghouat",
+  "Wilaya d'Oum El Bouaghi",
+  "Wilaya de Batna",
+  "Wilaya de Béjaïa",
+  "Wilaya de Biskra",
+  "Wilaya de Béchar",
+  "Wilaya de Blida",
+  "Wilaya de Bouira",
+  "Wilaya de Tamanrasset",
+  "Wilaya de Tébessa",
+  "Wilaya de Tlemcen",
+  "Wilaya de Tiaret",
+  "Wilaya de Tizi Ouzou",
+  "Wilaya d'Alger",
+  "Wilaya de Djelfa",
+  "Wilaya de Jijel",
+  "Wilaya de Sétif",
+  "Wilaya de Saïda",
+  "Wilaya de Skikda",
+  "Wilaya de Sidi Bel Abbès",
+  "Wilaya d'Annaba",
+  "Wilaya de Guelma",
+  "Wilaya de Constantine",
+  "Wilaya de Médéa",
+  "Wilaya de Mostaganem",
+  "Wilaya de M'Sila",
+  "Wilaya de Mascara",
+  "Wilaya de Ouargla",
+  "Wilaya d'Oran",
+  "Wilaya d'El Bayadh",
+  "Wilaya d'Illizi",
+  "Wilaya de Bordj Bou Arreridj",
+  "Wilaya de Boumerdès",
+  "Wilaya d'El Tarf",
+  "Wilaya de Tindouf",
+  "Wilaya de Tissemsilt",
+  "Wilaya d'El Oued",
+  "Wilaya de Khenchela",
+  "Wilaya de Souk Ahras",
+  "Wilaya de Tipaza",
+  "Wilaya de Mila",
+  "Wilaya d'Aïn Defla",
+  "Wilaya de Naâma",
+  "Wilaya d'Aïn Témouchent",
+  "Wilaya de Ghardaïa",
+  "Wilaya de Relizane",
+  "Wilaya de Timimoun",
+  "Wilaya de Bordj Badji Mokhtar",
+  "Wilaya d'Ouled Djellal",
+  "Wilaya de Béni Abbès",
+  "Wilaya d'In Salah",
+  "Wilaya d'In Guezzam",
+  "Wilaya de Touggourt",
+  "Wilaya de Djanet",
+  "Wilaya d'El M'Ghair",
+  "Wilaya d'El Meniaa"
+);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -176,13 +243,21 @@
                   <div class="signup-container11">
                     <span class="signup-text1">enter your city</span>
                   </div>
-                  <input
-                    type="text"
-                    placeholder="exp : ouargla"
-                    class="signup-textinput input"
-                    name="city"
+                                  
+                  <select  class="signup-textinput input" id="wilaya" style="
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50px;
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                " name="city" onchange="submitForm()">
 
-                  />
+
+
+                    <?php foreach ($cities as $city) { ?>
+                        <option  style="padding : 5px ; " value="<?php echo $city; ?>" ><?php echo $city; ?></option>
+                    <?php } ?>
+                  </select>  
                 </div>
 
                 <div class="signup-container10">
@@ -271,13 +346,20 @@
                   <div class="signup-container11">
                     <span class="signup-text1">enter your city</span>
                   </div>
-                  <input
-                    type="text"
-                    placeholder="exp : ouargla"
-                    class="signup-textinput input"
-                    name="city"
+                  <select  class="signup-textinput input" id="wilaya" style="
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50px;
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                " name="city" onchange="submitForm()">
 
-                  />
+
+
+                    <?php foreach ($cities as $city) { ?>
+                        <option  style="padding : 5px ; " value="<?php echo $city; ?>" ><?php echo $city; ?></option>
+                    <?php } ?>
+                  </select>  
                 </div>
                   <div class="signup-container10">
                     <div class="signup-container11">
@@ -364,13 +446,20 @@
                   <div class="signup-container11">
                     <span class="signup-text1">enter your city</span>
                   </div>
-                  <input
-                    type="text"
-                    placeholder="exp : ouargla"
-                    class="signup-textinput input"
-                    name="city"
+                  <select  class="signup-textinput input" id="wilaya" style="
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50px;
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                " name="city" onchange="submitForm()">
 
-                  />
+
+
+                    <?php foreach ($cities as $city) { ?>
+                        <option  style="padding : 5px ; " value="<?php echo $city; ?>" ><?php echo $city; ?></option>
+                    <?php } ?>
+                  </select>  
                 </div>
                 <div class="signup-container10">
                   <div class="signup-container11">
@@ -510,13 +599,20 @@
                   <div class="signup-container11">
                     <span class="signup-text1">enter your city</span>
                   </div>
-                  <input
-                    type="text"
-                    placeholder="exp : ouargla"
-                    class="signup-textinput input"
-                    name="city"
+                  <select  class="signup-textinput input" id="wilaya" style="
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50px;
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                " name="city" onchange="submitForm()">
 
-                  />
+
+
+                    <?php foreach ($cities as $city) { ?>
+                        <option  style="padding : 5px ; " value="<?php echo $city; ?>" ><?php echo $city; ?></option>
+                    <?php } ?>
+                  </select>  
                 </div>
                   <div class="signup-container10">
                     <div class="signup-container11">
@@ -547,7 +643,7 @@
                       <span class="signup-text3">enter your bio</span>
                     </div>
                     <input
-                      type="text"
+                      type="textarea"
                       placeholder="bio"
                       class="signup-textinput2 input"
                       name="bio"
@@ -571,7 +667,7 @@
                       <span class="signup-text3">enter your contact</span>
                     </div>
                     <input
-                      type="tel"
+                      type="textarea"
                       placeholder="number: ... insta : ... facebook: ... "
                       class="signup-textinput2 input"
                       name="contact"

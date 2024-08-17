@@ -361,6 +361,20 @@ color: #39707b
   overflow: hidden;
   border-radius: 20px;
 }
+.show-location-button {
+  background-color: #39707b;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20%;
+}
+
+.show-location-button:hover {
+  background-color: #235962;
+}
+
 
 .place-photo img {
   width: 100%;
@@ -398,6 +412,30 @@ color: #39707b
 .place-activities {
   font-size: 18px;
   color: #888;
+}
+.place-details {
+  /* your existing styles */
+}
+
+.place-details h3 {
+  color: #333;
+  font-size: 24px;
+  /* other styles for the heading */
+}
+
+.place-details .place-activities {
+  color: #666;
+  /* other styles for the activities text */
+}
+
+.place-details .place-description {
+  color: #888;
+  /* other styles for the description text */
+}
+
+.place-details .place-open-time {
+  color: #999;
+  /* other styles for the open time text */
 }
 
 .activity {
@@ -439,10 +477,10 @@ movingPhoto.addEventListener('mouseout', () => {
  
  $cities = array(
   "Choose a city : ",
-  "Wilaya d'Adrar",
+  "Wilaya de Adrar",
   "Wilaya de Chlef",
   "Wilaya de Laghouat",
-  "Wilaya d'Oum El Bouaghi",
+  "Wilaya de Oum El Bouaghi",
   "Wilaya de Batna",
   "Wilaya de Béjaïa",
   "Wilaya de Biskra",
@@ -454,14 +492,14 @@ movingPhoto.addEventListener('mouseout', () => {
   "Wilaya de Tlemcen",
   "Wilaya de Tiaret",
   "Wilaya de Tizi Ouzou",
-  "Wilaya d'Alger",
+  "Wilaya de Alger",
   "Wilaya de Djelfa",
   "Wilaya de Jijel",
   "Wilaya de Sétif",
   "Wilaya de Saïda",
   "Wilaya de Skikda",
   "Wilaya de Sidi Bel Abbès",
-  "Wilaya d'Annaba",
+  "Wilaya de Annaba",
   "Wilaya de Guelma",
   "Wilaya de Constantine",
   "Wilaya de Médéa",
@@ -469,34 +507,34 @@ movingPhoto.addEventListener('mouseout', () => {
   "Wilaya de M'Sila",
   "Wilaya de Mascara",
   "Wilaya de Ouargla",
-  "Wilaya d'Oran",
-  "Wilaya d'El Bayadh",
-  "Wilaya d'Illizi",
+  "Wilaya de Oran",
+  "Wilaya de El Bayadh",
+  "Wilaya de Illizi",
   "Wilaya de Bordj Bou Arreridj",
   "Wilaya de Boumerdès",
-  "Wilaya d'El Tarf",
+  "Wilaya de El Tarf",
   "Wilaya de Tindouf",
   "Wilaya de Tissemsilt",
-  "Wilaya d'El Oued",
+  "Wilaya de El Oued",
   "Wilaya de Khenchela",
   "Wilaya de Souk Ahras",
   "Wilaya de Tipaza",
   "Wilaya de Mila",
-  "Wilaya d'Aïn Defla",
+  "Wilaya de Aïn Defla",
   "Wilaya de Naâma",
-  "Wilaya d'Aïn Témouchent",
+  "Wilaya de Aïn Témouchent",
   "Wilaya de Ghardaïa",
   "Wilaya de Relizane",
   "Wilaya de Timimoun",
   "Wilaya de Bordj Badji Mokhtar",
-  "Wilaya d'Ouled Djellal",
+  "Wilaya de Ouled Djellal",
   "Wilaya de Béni Abbès",
-  "Wilaya d'In Salah",
-  "Wilaya d'In Guezzam",
+  "Wilaya de In Salah",
+  "Wilaya de In Guezzam",
   "Wilaya de Touggourt",
   "Wilaya de Djanet",
-  "Wilaya d'El M'Ghair",
-  "Wilaya d'El Meniaa"
+  "Wilaya de El M'Ghair",
+  "Wilaya de El Meniaa"
 );
 
 ?>
@@ -617,7 +655,7 @@ movingPhoto.addEventListener('mouseout', () => {
 
 
 
-            <div style="width:100%;" class="homepage-container">
+            <div  style="width:100%;" class="homepage-container">
               <div class="homepage-container01">
 
                     <div class="container" >
@@ -634,23 +672,39 @@ movingPhoto.addEventListener('mouseout', () => {
                           you embark on a journey filled with adventure and beauty.</p>
                   </div>
                   
+                  <div class="img">
+                    <img src="view/algiers-city.jpg"  alt="algiers city" class="ig">
+                  </div>
                   
                  
                   </div>
 
-                  <div style = "margin:20px auto 50px ;" class="explore"><h2>Explore <span style="color:#39707b">Algeria</span>'s Places</h2></div>
+                  <div  style = "margin:20px auto 50px ;" class="explore">
+                  <h2>Explore <span style="color:#39707b">Algeria</span>'s Places</h2>
+                </div>
+               
+               
+                
                   
                  
-                <div id="form-dialog" class="form-container" style="display:none; ">
+                <div   style="overflow:scroll;
+  
+  height: 600px;
+  overflow-y: scroll;
+  display: none;
+
+
+ "  id="form-dialog"  class="form-container" style="display:none; ">
                 
                 <span  class="close-icon">&times;</span>
-               <form id="newpost_form" action="index.php?action=tourism_add_to_gallery"  enctype="multipart/form-data"  method="post">
+               <form style ="absolute"id="newpost_form" action="index.php?action=tourism_add_to_gallery2"  enctype="multipart/form-data"  method="post">
+              
                <input type="file" name="newpost" id="file-input">
-       
                <label for="" style="color:white;">The title : </label>
-               <input type="text" name="title" id="" placeholder="write the title here ">
+               <input type="text" name="title" id="title-input" placeholder="write the title here ">
+               
                <label for="" style="color:white;">The City : </label>
-               <select   name="city">
+               <select  id ="city-input" name="city">
 
 
     <?php foreach ($cities as $city) { ?>
@@ -660,12 +714,17 @@ movingPhoto.addEventListener('mouseout', () => {
 
 									
                <label for="" style="color:white;" >The open time : </label>
-               <input type="text" name="time" id="" placeholder="write the open time here ">
-               <label for="" style="color:white;" >Activities : </label>
-               <input type="text" name="activity" id="" placeholder="write the activities in this place ">
+               <input type="text" name="time" id="time-input" placeholder="write the open time here ">
+               <label for="" style="color:white;"  >Activities : </label>
+               <input type="text" name="activity" id="activity-input" placeholder="activity1,activity2,activity3,... ">
                <label for="" style="color:white;">The description : </label>
-               <textarea id="messag" name="description" rows="5" cols="50" placeholder="write the description here"></textarea>
-      
+               <textarea id="description-input" name="description" rows="5" cols="50" placeholder="write the description here"></textarea>
+               <label for="" style="color:white;" >Latitude : </label>
+               <input type="text" name="latitude" id="latitude-input"  placeholder="latitude of the place ">
+               <label for="" style="color:white;" >longitude: </label>
+               <input type="text" name="longitude"id="longitude-input" placeholder="longitude of the place ">
+               <p id="error-message"  style="color: red; display: none;">Please fill in all the fields.</p>
+
               
               <button  class = "button guideprofie-navlink6 " type="submit" name="submit-btn">Add</button>
       
@@ -682,6 +741,7 @@ movingPhoto.addEventListener('mouseout', () => {
         });
     </script>
               </div>
+              <div id="gallery">
               <?php
 
               for($i=0;$i<count($items);$i++){
@@ -701,59 +761,46 @@ foreach ($combined_array as $image => $aninfo){
   $data = explode("|", $file_contents);
   $time= $data[0];
   $act=explode("[NEWLINE]", $data[1]);
+ 
   $title=$data[2];
-  $description = str_replace("[NEWLINE]", "\n", $data[3]);
-
-  echo '<div class="place-card">
-  <div class="place-photo">
-    <img src='.$image.' alt="Place Photo">
-  </div>
-  <div class="place-details">
-    <h3 class="place-title">'.$title.'</h3>
-    <p class="place-description">'.$items[$i]['wilaya'].'</p>
-    <p class="place-activities">
-      Activities:
-      ';
-      for($j=0;$j<count($act);$j++)
-      {
+  $latitude=$data[3];
+  $longitude=$data[4];
+  $description = str_replace("[NEWLINE]", "\n", $data[5]);
+ 
+  echo '
+  <div id="gallery" class="place-card">
+    <div class="place-photo">
+      <img src='.$image.' alt="Place Photo">
+    </div>
+    <div style="overflow:auto; "class="place-details">
+      <h3 class="place-title">'.$items[$i]['wilaya'].' : '.$title.'</h3>
+      <p class="place-activities">';
+  for ($j = 0; $j < count($act); $j++) {
       echo '
-      <span class="activity">'.$act[$i].'</span>';
-      }
-      echo '
-    </p>
-      
-   
-    <p class="place-description">'.$description.'</p>
-    <p class="place-open-time">Open Time: '.$time.'</p>
-  </div>
-</div>';
+        <span class="activity">'.$act[$j].'</span>';
+  }
+  echo '
+      </p>
+      <p class="place-description">'.$description.'</p>
+      <p class="place-open-time">Open Time: '.$time.'</p>
+      <button class="show-location-button" onclick="showLocation(\''.$latitude.'\', \''.$longitude.'\')">Show Location</button>
+    </div>
+  </div>';
+  
 }
-
-              }
+}           
 ?>
-          
-                
+      <script>
+function showLocation(latitude, longitude) {
+  var url = "https://www.google.com/maps/search/?api=1&query=" + latitude + "," + longitude;
+  window.open(url, "_blank");
+}
+</script>
+    
+</div>    
               </div>
             </div>
          
-
-
-           
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -767,6 +814,131 @@ foreach ($combined_array as $image => $aninfo){
              
     <span class="guideprofie-text18">Add Place</span>
 </button>
+
+<script>
+ // JavaScript function to handle file upload and send AJAX request
+function uploadImage() 
+{
+  
+ // Retrieve the form data
+ var formData = new FormData();
+  
+  // Retrieve the file input element
+  var fileInput = document.getElementById('file-input');
+ 
+  
+  // Retrieve the title and description from form inputs
+  var titleInput = document.getElementById('title-input');
+  var descriptionInput = document.getElementById('description-input');
+  var activityInput = document.getElementById('activity-input');
+  var timeInput = document.getElementById('time-input');
+  var  cityinput = document.getElementById('city-input');
+  var  latitudeinput = document.getElementById('latitude-input');
+  var  longitudeinput = document.getElementById('longitude-input');
+   // Check if any of the inputs are blank
+   
+
+  var title = titleInput.value;
+  
+  var description = descriptionInput.value;
+  var time = timeInput.value;
+  var activity = activityInput.value;
+  var city =  cityinput.value;
+  var longitude = longitudeinput.value;
+  var latitude =latitudeinput.value;
+  
+
+   if (title === '' || description === '' || time === '' || activity === '' || city === '' || longitude === ''|| latitude ==='' ) {
+    // Display an error message
+    var errorElement = document.getElementById('error-message');
+   
+    errorElement.style.display = 'block';
+    return; // Stop the function execution
+
+   }
+     // Check if a file was selected
+  if (fileInput.files.length === 0) {
+    // Display an error message
+   
+    var errorMessage = document.getElementById('error-message');
+        errorMessage.style.display = 'block';
+    return; // Stop the function execution
+  }
+  
+  formData.append('title', title);
+  formData.append('description', description);
+  formData.append('time', time);
+  formData.append('activity', activity);
+  formData.append('city', city);
+  formData.append('latitude', latitude);
+  formData.append('longitude', longitude);
+  formData.append('newpost', fileInput.files[0]);
+
+  // Create a new XMLHttpRequest object
+  var xhr = new XMLHttpRequest();
+
+  
+  // Define the AJAX request
+  xhr.open('POST', 'index.php?action=tourism_add_to_gallery2', true);
+  
+  // Set the onload function to handle the AJAX response
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+     
+      if (xhr.responseText) {
+       
+        try {
+          
+        
+          var jsonResponse = xhr.responseText.substring(2);
+          var response = JSON.parse(jsonResponse);
+          
+         
+          var html = response.html;
+          
+          var gallery = document.getElementById('gallery');
+          
+          gallery.insertAdjacentHTML('afterbegin', html);
+          
+
+          // Clear the form inputs
+          titleInput.value = '';
+          descriptionInput.value = '';
+          cityinput.value = '';
+          activityInput.value = '';
+          timeInput.value = '' ;
+          latitudeinput.value = '';
+          longitudeinput.value = '';
+          
+          var formDialog = document.querySelector('#form-dialog');
+                formDialog.style.display = 'none';
+                var newPost = gallery.firstElementChild;
+          newPost.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          //to erase the ooooops
+          var p =document.getElementById('no_tourism');
+         p.style.display ='none';
+ 
+        } catch (error) {
+          console.error('Error parsing JSON:', error);
+        }
+      } else {
+        console.error('Empty response');
+      }
+    }
+  };
+
+  // Send the AJAX request
+  xhr.send(formData);
+}
+
+document.getElementById('newpost_form').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent form submission
+
+  uploadImage(); // Call the uploadImage() function
+
+});
+</script>
+
 <a href="index.php?action=find_city&city=<?php echo $city ;?>" style="margin:20px;" class="cityguides-navlink10 button">
             back to city home
           </a>
@@ -809,5 +981,6 @@ foreach ($combined_array as $image => $aninfo){
       data-section-id="header"
       src="https://unpkg.com/@teleporthq/teleport-custom-scripts"
     ></script>
+
   </body>
 </html>

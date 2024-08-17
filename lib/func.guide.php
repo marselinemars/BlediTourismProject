@@ -108,12 +108,17 @@ function guide_add_info_to_gallery (){
         $targetFile = $directory . $file_name . ".txt";
         $data = $title . "|" . $description . "\n";
     
+        $directory=$targetFile;
         file_put_contents($targetFile, $data, FILE_APPEND);
     }
 
     $info=array('title'=> $_POST['title'] , 'description'=>  $_POST['description']);
 
-    return $info ;
+    return array(
+      "0" => $info,
+      "1" => $directory
+    );
+    
 }
 
 

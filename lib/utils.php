@@ -26,13 +26,4 @@ function get_input_vars(){
     return $vars;
 }
 
-function parse_mdy_time($str){
-	if (empty($str))return 0;
-	$d=explode("/", $str);
-	if (count($d)!=3)return 0;
-	if (is_numeric($d[0]) && is_numeric($d[1]) && is_numeric($d[2]))
-		return mktime  (0 , 0 , 0 , $d[0], $d[1], $d[2]);
-	return 0;
-}
-
 ?>

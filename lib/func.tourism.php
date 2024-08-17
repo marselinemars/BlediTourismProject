@@ -1,3 +1,4 @@
+
 <?php 
 
 function tourism_add_image_to_gallery (){
@@ -44,6 +45,8 @@ function tourism_add_image_to_gallery (){
     
     if (empty($items)) {
         
+      
+      
       $gallery_path=str_replace(' ', '',$_POST['city']);
       $dir_path = 'Tourism-galleries/' . $gallery_path ;
       mkdir($dir_path, 0777, true);
@@ -71,7 +74,7 @@ function tourism_add_image_to_gallery (){
   
       // Check if the file is an image
       $check = getimagesize($_FILES["newpost"]["tmp_name"]);
-      if($check !== false) {echo"hi";
+      if($check !== false) {
         // Move the uploaded file to the destination path
         if (move_uploaded_file($_FILES["newpost"]["tmp_name"], $targetFile)) {
           // Save the file path to your database
@@ -94,8 +97,7 @@ function tourism_add_image_to_gallery (){
   }
   
 
-
-  return $ret ;
+  return $targetFile ;
 }
 
 
@@ -115,13 +117,18 @@ function tourism_add_info_to_gallery (){
     if($_SERVER['REQUEST_METHOD'] == "POST"){
         $time=$_POST['time'];
         $title = $_POST['title'];
+        $latitude=$_POST['latitude'];
+        $longitude=$_POST['longitude'];
         $act= str_replace(",", "[NEWLINE]",$_POST['activity']);               
         $description = str_replace("\n", "[NEWLINE]", $_POST['description']);
         $targetFile = $directory . $file_name . ".txt";
-        $data = $time ."|". $act . "|" . $title . "|" . $description . "\n";
+        $data = $time ."|". $act . "|" . $title . "|" . $latitude ."|" . $longitude . "|". $description . "\n";
        
         file_put_contents($targetFile, $data, FILE_APPEND);
     }
+    $info=array('city'=> $_POST['city'],'title'=> $_POST['title'] ,'latitude'=> $_POST['latitude'],'longitude'=> $_POST['longitude'] ,'description'=>  $_POST['description'] , 'time'=> $_POST['time'] , 'activity'=>$_POST['activity']);
+
+    return $info ;
 }
 function tourism_get_gallery ($city){
 

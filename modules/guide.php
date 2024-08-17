@@ -127,7 +127,9 @@ switch($vars['action']){
     case "guide_add_to_gallery":{
 
         $targetimage = guide_add_image_to_gallery();
-        $info = guide_add_info_to_gallery();
+        $returned_data = guide_add_info_to_gallery();
+        $info = $returned_data[0];
+        $info_file = $returned_data[1];
 
         $db->query('UPDATE guides SET num_of_posts=num_of_posts+1 WHERE LOWER(email) = ? AND pass = ? ' , $_COOKIE['app_email'] , $_COOKIE['app_pass'] );
 
@@ -135,9 +137,19 @@ switch($vars['action']){
         
         $response = array(
             $info,$targetimage,
-            'html' => '<div  class="guideprofie-gallery-card mycard"><img style="height:60%;"class="mycard"alt="image"src="' . $targetimage . '"class="guideprofie-image2"/><div class="info" style="height:40%; width:100%; padding:2%;"><h2 class="guideprofie-text06 mycard">'.$info['title'].'</h2><p style="word-wrap: break-word;" class="guideprofie-text07 mycard">'.$info['description'].'</p></div></div>',
+            'html' => '<div  class="guideprofie-gallery-card mycard"><img style="height:60%;"class="mycard"alt="image"src="' . $targetimage . '"class="guideprofie-image2"/><div class="info" style="height:40%; width:100%; padding:2%;">
+            <h2 class="guideprofie-text06 mycard">'.$info['title'].'</h2>
+            <p style="word-wrap: break-word;" class="guideprofie-text07 mycard">'.$info['description'].'</p></div>
+           
+            <div style="padding:2%;align-self: flex-end;" >
+            <button  style="display:inline;margin-top:10px;"onclick="showConfirmationDialog(\''.$image.'\',\''.$file_path.'\')"><span class="guideprofie-text18">delete</span></button>
+            <button  style="display:inline;margin-top:10px;" onclick="show_edit(event)"><span class="guideprofie-text18">edit</span></button>
+
+            </div>
+                </div>',
         );
         
+
         // Prepare the JSON response
         $jsonResponse = json_encode($response);
 

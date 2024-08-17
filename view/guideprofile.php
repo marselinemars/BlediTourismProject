@@ -116,7 +116,7 @@
           }
 
 
-          #form-dialog {
+          #form-dialog  ,#edit-post-dialog ,#confirmationDialog{
           position: fixed;
           top: 50%;
           left: 50%;
@@ -127,6 +127,7 @@
           z-index: 9999;
           border-radius: 10px;
           width: auto;
+          
 
 
           }
@@ -192,13 +193,13 @@
           color:black ;
           }
 
-          #newpost_form>input, #newpost_form>label , #newpost_form>textarea , #newfeedback_form>input, #newfeedback_form>label , #newfeedback_form>textarea , #newcircuit_form>input, #newcircuit_form>label , #newcircuit_form>textarea  {
+          #newpost_form>input, #newpost_form>label , #newpost_form>textarea , #newfeedback_form>input, #newfeedback_form>label , #newfeedback_form>textarea , #newcircuit_form>input, #newcircuit_form>label , #newcircuit_form>textarea ,#edit_post_form>input, #edit_post_form>label , #edit_post_form>textarea  {
             display:block;
             margin:10px;
             
           }
 
-          #newpost_form>input[type="text"] , #newpost_form>textarea ,#newfeedback_form>input, #newfeedback_form>textarea ,  #newfeedback_form>textarea , #newcircuit_form>input,#newcircuit_form>textarea{
+          #edit_post_form>input[type="text"] , #edit_post_form>textarea ,#newpost_form>input[type="text"] , #newpost_form>textarea ,#newfeedback_form>input, #newfeedback_form>textarea ,  #newfeedback_form>textarea , #newcircuit_form>input,#newcircuit_form>textarea{
             
             border: 1px solid rgba(57, 112, 123, 1);
           }
@@ -377,6 +378,8 @@ const formDialog = document.getElementById("form-dialog");
 
       const formDialog = document.getElementById("form-dialog");
 
+      const edit_post_Dialog = document.getElementById("edit-post-dialog");
+
       const feedabackDialog = document.getElementById("feedback-dialog");
 
       const circuitDialog = document.getElementById("circuit-dialog");
@@ -389,6 +392,7 @@ const formDialog = document.getElementById("form-dialog");
       circuitDialog.style.display = "none";
       contactDialog.style.display = "none";
 
+      edit_post_Dialog.style.display = "none";
 
     }
 
@@ -622,9 +626,18 @@ contactDialog.style.display = "block";
                   <div class="info" style="height:40%; width:100%; padding:2%;">
                   
                   <h2 class="guideprofie-text06 mycard">'.$title.'</h2>
-                  <p style="overflow:hidden;" class="guideprofie-text07 mycard">'.$description.'</p></div>
-                  
-                </div> ';
+                  <p style="overflow:hidden;" class="guideprofie-text07 mycard">'.$description.'</p></div> ' ;
+                  if ($role==="guide" && $mine=='true'){
+
+                    echo '<div style="padding:2%;align-self: flex-end;" >
+                    <button  style="display:inline;margin-top:10px;"onclick="showConfirmationDialog(\''.$image.'\',\''.$file_path.'\')"><span class="guideprofie-text18">delete</span></button>
+                    <button  style="display:inline;margin-top:10px;" onclick="show_edit(\''.$image.'\',\''.$file_path.'\' )"><span class="guideprofie-text18">edit</span></button>
+    
+                    </div>';
+                   }
+
+                echo '</div> ' ;
+                
               }
             }
             
@@ -635,10 +648,14 @@ contactDialog.style.display = "block";
            
          <?php if ($role==="guide" && $mine=='true'){
 
-          echo '<button  style="display:block; width:100%;margin-top:60px;" id="show-form-btn"onclick="show_form(event)"><span class="guideprofie-text18">Add post -&gt;</span></button>';
+          echo '<button  style="display:block; width:100%;margin-top:100px;" id="show-form-btn"onclick="show_form(event)"><span class="guideprofie-text18">Add post -&gt;</span></button>';
 
          }
          ?>
+
+         
+       
+
 
           <div id="form-dialog" style="display:none;">
 
@@ -656,6 +673,36 @@ contactDialog.style.display = "block";
 
         </form>
         
+        </div>
+
+        
+        <div id="edit-post-dialog" style="display:none;">
+
+        <button  onclick="close_dialog(event)" class="close-button">&#10006;</button>
+        <form id="edit_post_form" action="index.php?action=update_post" method="post" enctype="multipart/form-data" >
+        <input type="file" name="updated_image" id="file-input-1">
+
+        <label for="">The title : </label>
+        <input type="text" name="title" id="title-input-1" placeholder="write the title here ">
+        <label for="">The description : </label>
+        <textarea id="description-input-1" name="description" rows="5" cols="50" placeholder="write the description here"></textarea>
+
+
+        <button type="submit" style="display:inline; width:45%;margin-top:20px;" id="update_btn" onclick="update_post()" class ="button guideprofie-navlink6">Update</button>
+        </form>
+
+        </div>
+
+
+
+        <div id="confirmationDialog" style="display:none;">
+
+        <p>Do you really want to delete this post ? </p>
+        <div style="display:flex;flex-direction:row;justify-content:space-between;" >
+        <button  style="display:inline; width:45%;margin-top:20px;" id="show-form-btn"onclick="confirmDeletion()" class ="button guideprofie-navlink6" >Confirm</button>
+        <button  style="display:inline; width:45%;margin-top:20px;" id="show-form-btn"onclick="cancelDeletion()" class ="button guideprofie-navlink6">Cancel</button>
+        </div>
+
         </div>
 
 
@@ -918,7 +965,10 @@ document.getElementById('newpost_form').addEventListener('submit', function(even
 
 
 <script>
+
  // JavaScript function to handle file upload and send AJAX request
+
+
 function add_circuit() 
 {
   // Retrieve the title and description from form inputs
@@ -998,9 +1048,6 @@ function add_feedback()
   var description = descriptionInput.value;
   var name = '<?php echo $g_name; ?>';
 
-  alert(name );
-  alert(title);
-  alert (description);
   // Create a new FormData object
   var formData = new FormData();
 
@@ -1055,6 +1102,134 @@ document.getElementById('newfeedback_form').addEventListener('submit', function(
 
 
 </script>
+
+
+<script>
+  var argument1;
+
+  var argument2;
+
+
+  function showConfirmationDialog(arg1,arg2) {
+   
+
+    argument1=arg1;
+    argument2=arg2;
+
+    // Display the confirmation dialog
+    var dialog = document.getElementById("confirmationDialog");
+    dialog.style.display = "block";
+  }
+
+  function confirmDeletion(arg1, arg2) {
+    // Hide the confirmation dialog
+    var dialog = document.getElementById("confirmationDialog");
+    dialog.style.display = "none";
+
+    // Redirect to the PHP file
+    var url = "index.php?action=delete_post"; // Specify the path to your PHP file
+    var redirectUrl = url + "&image=" + encodeURIComponent(argument1) + "&text=" + encodeURIComponent(argument2);
+    window.location.href = redirectUrl;
+  }
+
+  function cancelDeletion() {
+    // Hide the confirmation dialog
+    var dialog = document.getElementById("confirmationDialog");
+    dialog.style.display = "none";
+  }
+</script>
+
+
+
+
+
+
+<script>
+
+      
+document.getElementById('edit_post_form').addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent form submission
+
+  
+});
+
+
+var image;
+var text;
+
+
+  function show_edit(arg1, arg2) {
+   
+
+image = arg1;
+text = arg2 ;
+
+
+    
+  // Get the post details
+  var postDiv = event.target.closest('.guideprofie-gallery-card');
+  var title = postDiv.querySelector('.guideprofie-text06').textContent;
+  var description = postDiv.querySelector('.guideprofie-text07').textContent;
+
+  document.getElementById('title-input-1').value = title;
+  document.getElementById('description-input-1').value = description;
+
+
+  
+
+    // Display the confirmation dialog
+    var dialog = document.getElementById("edit-post-dialog");
+    dialog.style.display = "block";
+  }
+
+
+
+
+  function update_post(arg1, arg2) {
+
+   
+    // Hide the confirmation dialog
+    var dialog = document.getElementById("edit-post-dialog");
+    dialog.style.display = "none";
+
+    
+
+        // Get the reference to your existing form element
+    var form = document.getElementById('edit_post_form'); // Replace 'your-form-id' with the actual ID of your form
+
+    // Create a new hidden input element
+    var input1 = document.createElement('input');
+    input1.type = 'hidden';
+    input1.name = 'previous_image'; // Replace 'newField' with the name of the new field
+    input1.value = image; // Replace 'newValue' with the desired value
+
+    // Append the new input element to the existing form
+    form.appendChild(input1);
+
+
+   
+    // Create a new hidden input element
+    var input2 = document.createElement('input');
+    input2.type = 'hidden';
+    input2.name = 'previous_text';
+    input2.value = text; 
+
+    // Append the new input element to the existing form
+    form.appendChild(input2); 
+
+    // Submit the form
+    form.submit();
+
+
+        }
+
+
+  
+
+</script>
+
+
+
 
 
 
